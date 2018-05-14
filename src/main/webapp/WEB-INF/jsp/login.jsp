@@ -23,7 +23,8 @@
 			
 				<span>${message}</span> 
 				<input name="username" type="text" class="form-control" placeholder="Username" autofocus="true" /> 
-				<input name="password" type="password" class="form-control"placeholder="Password" /> <span>${error}</span> 
+				<input name="password" type="password" class="form-control"placeholder="Password" /> 
+				<span>${error}</span> 
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
 				<button class="btn btn-lg btn-primary btn-block" type="submit">LogIn</button>

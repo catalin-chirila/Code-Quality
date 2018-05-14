@@ -1,10 +1,14 @@
 package com.codequality.service;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.codequality.entity.ReviewRequest;
 import com.codequality.entity.User;
 
 import com.codequality.repository.RoleRepository;
@@ -26,5 +30,10 @@ public class UserServiceImpl implements UserService {
 
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+    
+    public List<ReviewRequest> getReviewRequestsByUsername(String username) {
+    	List<ReviewRequest> requests = userRepository.findByUsername(username).getReviewRequests().stream().collect(Collectors.toList());
+    	return requests;
     }
 }

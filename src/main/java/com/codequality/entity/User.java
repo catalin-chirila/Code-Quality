@@ -32,9 +32,6 @@ public class User {
     @Column(name = "bio")
     private String bio;
     
-    @Column(name = "role")
-    private String role;
-    
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "user")
@@ -104,14 +101,6 @@ public class User {
         this.bio = bio;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public Set<ReviewRequest> getReviewRequests() {
         return reviewRequests;
     }
@@ -126,8 +115,6 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-    
-    
+    } 
     
 }

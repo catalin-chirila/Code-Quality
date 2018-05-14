@@ -1,15 +1,18 @@
 package com.codequality.controller;
 
+import java.security.Principal;
+import java.util.ArrayList;
+
+import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.codequality.entity.ReviewRequest;
 import com.codequality.service.UserService;
+import com.codequality.service.UserServiceImpl;
 
 
 
@@ -17,13 +20,10 @@ import com.codequality.service.UserService;
 public class UserController {
     
     @Autowired
-    private UserService userService;
-
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        return super.userDetailsService();
-//    }
+    private UserService userService;   
     
+    @Autowired
+    private UserServiceImpl userServiceImpl;
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
@@ -37,8 +37,9 @@ public class UserController {
     }
 
    
-    @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
-    public String welcome(Model model) {
-        return "home";
+    @RequestMapping(value = {"/user/home"}, method = RequestMethod.GET)
+    public String welcome(Model model, Principal principal) {
+    	model.addAttribute("requests", userServiceImpl.getReviewRequestsByUsername(principal.getName()));
+        return "user";
     }
 }
