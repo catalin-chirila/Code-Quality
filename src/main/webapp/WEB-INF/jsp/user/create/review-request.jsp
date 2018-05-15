@@ -7,12 +7,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Welcome</title>
+	<title>Create Review Request</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
 	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="../../css/bootstrap.min.css">
-	<link rel="stylesheet" href="../../css/forms.css">
+	<link rel="stylesheet" href="../../css/create-review-requests.css">
 </head>
 <body>
 
@@ -60,7 +60,7 @@
 	    <form:label for="repositoryLink" path="repositoryLink">Repository Link</form:label>
 	    <form:input type="text" class="form-control form-control-lg" id="repositoryLink" path="repositoryLink" placeholder="https://github.com/user/repositoryname" name="repositoryLink"></form:input>
 	  </div>
-	  <form:button type="submit" class="btn btn-primary">Submit</form:button>
+	  <form:button type="submit" class="btn btn-secondary btn-lg btn-block">Submit</form:button>
 	</form:form>
 </div>
 

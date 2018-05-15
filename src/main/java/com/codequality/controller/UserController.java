@@ -35,7 +35,7 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
         if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
+            model.addAttribute("error", "Your username or password is invalid.");
 
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
@@ -60,6 +60,7 @@ public class UserController {
     public String createReviewRequest(@ModelAttribute("reviewRequest") ReviewRequest reviewRequest, Principal principal, BindingResult result) {
     	User user = userServiceImpl.findByUsername(principal.getName());
     	reviewRequest.setUser(user);
+    	reviewRequest.setOpen(true);
     	reviewRequestImpl.save(reviewRequest);
         return "redirect:/user/home";
     }

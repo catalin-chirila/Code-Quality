@@ -26,9 +26,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        http.csrf().disable();
+    	
+    	String[] staticContent = {"/css/**", "/plugins/**", "/assets/img/**"};
         
         http
         .authorizeRequests()
+        .antMatchers(staticContent).permitAll()
         .antMatchers("/resources/**").permitAll()
         .antMatchers("/user/home").hasAuthority("USER")
         .anyRequest().authenticated()
