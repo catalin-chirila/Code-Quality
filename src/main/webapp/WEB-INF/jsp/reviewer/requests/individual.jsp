@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -12,6 +13,7 @@
 	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="../../css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../css/home.css">
+	<link rel="stylesheet" href="../../css/reviewer/individual.css">
 </head>
 <body>
 
@@ -31,15 +33,6 @@
 			<li class="nav-item">
 				<a class="nav-link underline" href="/user/requests/closed">Check Closed Requests</a>
 			</li>
-			<!--<li class="nav-item dropdown">
-				<a class="nav-link underline" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Edit Profile </a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a id="councilSquare" class="dropdown-item" href="/logout">The Council Square</a>
-					<a id="blackChurch" class="dropdown-item" href="${contextPath}/logout">The Black Church</a>
-					<a id="defensiveFortifications" class="dropdown-item" href="#">Brasov's Defensive Fortifications</a>
-					
-				</div>
-			</li> -->
 
 			<li class="nav-item">
 				<a class="nav-link underline" href="/profile/edit">Edit Profile</a>
@@ -57,42 +50,38 @@
 <div class="container">
 	<div class="row justify-content-center align-items-center">
        <div class="col-md-6 col-sm-12">
-           <h2 id="brasov">Open Review Requests</h2>
+           <h2 id="brasov">Individual Review Request</h2>
        </div>
     </div>
 
-	<div class="row justify-content-center align-items-center">
-		<c:forEach items="${requests}" var="request">
-			<div class="col-md-5 col-sm-12 requestBox">
-		        <p class="cardTitle">${request.title}</p>
-	            <p>
-	                ${request.description}
-	            </p>
-	            <p>
-	                <em>Repository Link:</em> <a target="_blank" href="${request.repositoryLink}">Here</a>
-		        </p>
-			</div>
-		</c:forEach>
+	<div class="row justify-content-center align-items-center">		
+		<div class="col-md-7 col-sm-12 requestBox">
+	        <p class="cardTitle">${individualRequest.title}</p>
+            <p>
+                ${individualRequest.description}
+            </p>
+            <p>
+                <em>Repository Link:</em> <a target="_blank" href="${individualRequest.repositoryLink}">Here</a>
+	        </p>
+		</div>
+	</div>
+
+
+	<div class="row justify-content-center align-items-center" id="feedback">
+		<div class="col-md-7 col-sm-12 requestBox">
+		<form:form action="/create-review-request" method="PUT" modelAttribute="individualRequest">
+		  <div class="form-group">
+		    <form:label for="reviewerFeedback" path="reviewerFeedback">Feedback</form:label>
+		    <form:textarea class="form-control form-control-lg" id="reviewerFeedback" path="reviewerFeedback" placeholder="Feedback.." rows="3" name="description"></form:textarea>
+		  </div>
+		
+		  <form:button type="submit" class="btn btn-success btn-lg btn-block">Submit Feedback</form:button>
+		  <form:button type="submit" class="btn btn-danger btn-lg btn-block">Mark Request As Broken</form:button>
+		</form:form>
+		</div>
 	</div>
 </div>
 
-<%-- <div class="container">
-	
-	<c:forEach items="${requests}" var="request">
-	    <div class="row justify-content-center align-items-center">
-	        <div class="col-md-7 col-sm-12 cardTextSeparated">
-	            <p class="cardTitle">${request.title}</p>
-	            <p>
-	                ${request.description}
-	            </p>
-	            <p>
-	                <em>Repository Link:</em> <a target="_blank" href="${request.repositoryLink}">Here</a>
-	            </p>
-	        </div>
-	    </div>
-	</c:forEach>
-
-</div> --%>
 
 <script type="text/javascript" src="../../plugins/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../../plugins/popper.min.js"></script>

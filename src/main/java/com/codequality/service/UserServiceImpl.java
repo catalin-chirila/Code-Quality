@@ -1,5 +1,6 @@
 package com.codequality.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,8 +33,27 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username);
     }
     
-    public List<ReviewRequest> getReviewRequestsByUsername(String username) {
+    public List<ReviewRequest> getOpenReviewRequestsByUsername(String username) {
     	List<ReviewRequest> requests = userRepository.findByUsername(username).getReviewRequests().stream().collect(Collectors.toList());
-    	return requests;
+    	List<ReviewRequest> openRequests = new ArrayList<>();
+    	
+    	for (ReviewRequest request : requests) {
+    		if (request.getOpen()) {
+    			openRequests.add(request);
+    		}
+    	}
+    	return openRequests;
+    }
+    
+    public List<ReviewRequest> getClosedReviewRequestsByUsername(String username) {
+    	List<ReviewRequest> requests = userRepository.findByUsername(username).getReviewRequests().stream().collect(Collectors.toList());
+    	List<ReviewRequest> closedRequests = new ArrayList<>();
+    	
+    	for (ReviewRequest request : requests) {
+    		if (!request.getOpen()) {
+    			closedRequests.add(request);
+    		}
+    	}
+    	return closedRequests;
     }
 }

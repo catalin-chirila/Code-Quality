@@ -1,18 +1,17 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Create Review Request</title>
+	<title>Welcome</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
 	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="../../css/bootstrap.min.css">
-	<link rel="stylesheet" href="../../css/create-review-requests.css">
+	<link rel="stylesheet" href="../../css/home.css">
 </head>
 <body>
 
@@ -27,7 +26,10 @@
 	<div class="collapse navbar-collapse " id="navbarSupportedContent">
 		<ul class="navbar-nav mx-auto">
 			<li class="nav-item">
-				<a class="nav-link underline" href="/request/add">Add Review Request</a>
+				<a class="nav-link underline" href="/user/requests/create">Add Review Request</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link underline" href="/user/requests/closed">Check Closed Requests</a>
 			</li>
 
 			<li class="nav-item">
@@ -43,25 +45,28 @@
 	</div>
 </nav>
 
+<div class="container">
+	<div class="row justify-content-center align-items-center">
+       <div class="col-md-6 col-sm-12">
+           <h2 id="brasov">Open Review Requests</h2>
+       </div>
+    </div>
 
-
-
-<div class="row justify-content-center align-items-center">
-	<form:form class="col-md-6 col-sm-12" action="/create-review-request" method="PUT" modelAttribute="reviewRequest">
-	  <div class="form-group">
-	    <form:label for="title" path="title">Title</form:label>
-	    <form:input type="text" class="form-control form-control-lg" id="title" path="title" placeholder="Java Sorting Algorithm" name="title"></form:input>
-	  </div>
-	  <div class="form-group">
-	    <form:label for="description" path="description">Description</form:label>
-	    <form:textarea class="form-control form-control-lg" id="description" path="description" placeholder="Description.." rows="3" name="description"></form:textarea>
-	  </div>
-	  <div class="form-group">
-	    <form:label for="repositoryLink" path="repositoryLink">Repository Link</form:label>
-	    <form:input type="text" class="form-control form-control-lg" id="repositoryLink" path="repositoryLink" placeholder="https://github.com/user/repositoryname" name="repositoryLink"></form:input>
-	  </div>
-	  <form:button type="submit" class="btn btn-secondary btn-lg btn-block">Submit</form:button>
-	</form:form>
+	<div class="row justify-content-center align-items-center">
+		<c:forEach items="${requests}" var="request">
+			<a href="/reviewer/request/${request.id}" class="requestLink">
+				<div class="col-md-5 col-sm-12 requestBox">
+			        <p class="cardTitle">${request.title}</p>
+		            <p>
+		                ${request.description}
+		            </p>
+		            <p>
+		                <em>Repository Link:</em> <a target="_blank" href="${request.repositoryLink}">Here</a>
+			        </p>
+				</div>
+			</a>	
+		</c:forEach>
+	</div>
 </div>
 
 

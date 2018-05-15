@@ -42,26 +42,33 @@ public class UserController {
 
         return "login";
     }
-
    
     @RequestMapping(value = {"/user/home"}, method = RequestMethod.GET)
     public String getUserHome(Model model, Principal principal) {
-    	model.addAttribute("requests", userServiceImpl.getReviewRequestsByUsername(principal.getName()));
+    	model.addAttribute("requests", userServiceImpl.getOpenReviewRequestsByUsername(principal.getName()));
         return "/user/home";
     }
     
-    @RequestMapping(value = {"/user/create/review-request"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/user/requests/create"}, method = RequestMethod.GET)
     public String getUserCreateReviewRequest(Model model, Principal principal) {
     	model.addAttribute("reviewRequest", new ReviewRequest());
-        return "/user/create/review-request";
+        return "/user/requests/create";
     }
     
     @RequestMapping(value = {"/create-review-request"}, method = RequestMethod.PUT)
     public String createReviewRequest(@ModelAttribute("reviewRequest") ReviewRequest reviewRequest, Principal principal, BindingResult result) {
     	User user = userServiceImpl.findByUsername(principal.getName());
-    	reviewRequest.setUser(user);
-    	reviewRequest.setOpen(true);
-    	reviewRequestImpl.save(reviewRequest);
+    	reviewRequestImpl.saveOpenReviewRequest(reviewRequest, user);
         return "redirect:/user/home";
     }
+    
+    
+    @RequestMapping(value = {"/user/requests/closed"}, method = RequestMethod.GET)
+    public String getClosedReviewRequests(Model model, Principal principal) {
+    	model.addAttribute("requests", userServiceImpl.getClosedReviewRequestsByUsername(principal.getName()));
+        return "/user/requests/closed";
+    }
+    
+    
+   
 }

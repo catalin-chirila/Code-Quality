@@ -1,5 +1,5 @@
 body {
-    font-family: 'Oswald', 'Lato', serif;
+    /* font-family: 'Oswald', 'Lato', serif; */
     font-weight: 300;
     font-size: 10px;
     -webkit-font-smoothing: antialiased;
@@ -60,14 +60,16 @@ hr {
 
 #brasov {
     font-weight: bold;
-    font-size: 14em;
+    font-size: 5em;
     text-align: center;
-    padding-top: 360px;
+    margin-bottom: 9%;
+    /* margin-top: -4%; */
     color: #ff6369;
-    letter-spacing: 20px;
+    /* letter-spacing: 20px; */
     list-style-type: none;
-    opacity: 0;
-    transition: all 1s ease-in;
+    /* opacity: 0; */
+
+    
 }
 
 .brasov-fade-in {
@@ -82,7 +84,7 @@ hr {
 }
 
 .row {
-    margin-top: 5%;
+    margin-top: -5%;
 }
 
 #cityHighlightsCard {
@@ -90,9 +92,9 @@ hr {
 }
 
 .cardTitle {
-    color: #126a76;
+    /* color: #126a76; */
     font-size: 1.8em;
-    font-weight: 400;
+    font-weight: 500;
     font-family: 'Oswald', 'Lato', serif;
 }
 
@@ -114,18 +116,25 @@ hr {
     margin-left: 10%;
 }
 
-.cardTextSeparated {
+.requestBox {
     font-size: 2.3em;
     font-weight: 400;
-    font-family: 'Lato', serif;
+    /* font-family: 'Lato', serif;  */
     color: rgba(0, 0, 0,0.7);
     background: none;
     -webkit-box-shadow: 1px 6px 19px 0px rgba(0,0,0,0.19);
     -moz-box-shadow: 1px 6px 19px 0px rgba(0,0,0,0.19);
     box-shadow: 1px 6px 19px 0px rgba(0,0,0,0.19);
+	margin: 4% 2% 0 2%;
+}
 
-    transform: translateY(70px);
-    transition: all 1.3s ease-out;
+.requestLink {
+	color: rgba(0, 0, 0,0.7);
+}
+
+.requestLink:hover {
+    text-decoration: none;
+    color: rgba(0, 0, 0,0.7);
 }
 
 .cardImage {
