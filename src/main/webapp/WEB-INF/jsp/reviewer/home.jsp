@@ -26,9 +26,6 @@
 	<div class="collapse navbar-collapse " id="navbarSupportedContent">
 		<ul class="navbar-nav mx-auto">
 			<li class="nav-item">
-				<a class="nav-link underline" href="/user/requests/create">Add Review Request</a>
-			</li>
-			<li class="nav-item">
 				<a class="nav-link underline" href="/user/requests/closed">Check Closed Requests</a>
 			</li>
 
@@ -48,11 +45,19 @@
 <div class="container">
 	<div class="row justify-content-center align-items-center">
        <div class="col-md-6 col-sm-12">
-           <h2 id="brasov">Open Review Requests</h2>
+           <h2 id="pageTitle">Open Review Requests</h2>
        </div>
     </div>
 
 	<div class="row justify-content-center">
+		<c:forEach items="${requests}" var="request">
+			<a class="col-md-5 col-sm-12 requestBox requestLink" id="linkRequestBox" href="/reviewer/request/${request.id}">			
+			      <span class="cardTitle">${request.title} (Status: <span id="needReview">Need Review</span>)</span>				
+			</a>	
+		</c:forEach>
+	</div>
+	
+	<%-- <div class="row justify-content-center">
 		<c:forEach items="${requests}" var="request">
 			<a href="/reviewer/request/${request.id}" class="requestLink">
 				<div class="col-md-5 col-sm-12 requestBox">
@@ -66,7 +71,7 @@
 				</div>
 			</a>	
 		</c:forEach>
-	</div>
+	</div> --%>
 </div>
 
 

@@ -28,8 +28,8 @@ public class ReviewerController {
 
 //	@PreAuthorize("hasAuthority('REVIEWER')")
 	@RequestMapping(value = {"/reviewer/home"}, method = RequestMethod.GET)
-    public String getClosedReviewRequests(Model model, Principal principal) {
-    	model.addAttribute("requests", userServiceImpl.getOpenReviewRequestsByUsername(principal.getName()));
+    public String getClosedReviewRequests(Model model) {
+    	model.addAttribute("requests", reviewRequestImpl.getAllOpenReviewRequests());
         return "/reviewer/home";
     }
 	
@@ -44,5 +44,6 @@ public class ReviewerController {
 		reviewRequestImpl.updateReviewRequest(updateData, updateData.getId());
         return "redirect:/reviewer/home";
     }
+
 }
 

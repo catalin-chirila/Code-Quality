@@ -1,5 +1,9 @@
 package com.codequality.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.codequality.entity.ReviewRequest;
@@ -32,4 +36,9 @@ public class ReviewRequestImpl {
 		reviewRequest.setReviewerFeedback(updateData.getReviewerFeedback());	
 		reviewRequestRepository.save(reviewRequest);
 	}
+	
+	 public List<ReviewRequest> getAllOpenReviewRequests() {
+	    	List<ReviewRequest> allOpenRequests = reviewRequestRepository.findAllByOpen(true);	  
+	    	return allOpenRequests;
+	    }
 }

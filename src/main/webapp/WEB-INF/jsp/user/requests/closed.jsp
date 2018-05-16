@@ -31,15 +31,6 @@
 			<li class="nav-item">
 				<a class="nav-link underline" href="/user/requests/closed">Check Closed Requests</a>
 			</li>
-			<!--<li class="nav-item dropdown">
-				<a class="nav-link underline" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Edit Profile </a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a id="councilSquare" class="dropdown-item" href="/logout">The Council Square</a>
-					<a id="blackChurch" class="dropdown-item" href="${contextPath}/logout">The Black Church</a>
-					<a id="defensiveFortifications" class="dropdown-item" href="#">Brasov's Defensive Fortifications</a>
-					
-				</div>
-			</li> -->
 
 			<li class="nav-item">
 				<a class="nav-link underline" href="/profile/edit">Edit Profile</a>
@@ -61,38 +52,54 @@
        </div>
     </div>
 
-	<div class="row justify-content-center align-items-center">
+	<div class="row justify-content-center h-100">
 		<c:forEach items="${requests}" var="request">
-			<div class="col-md-5 col-sm-12 requestBox">
-		        <p class="cardTitle">${request.title}</p>
-	            <p>
-	                ${request.description}
-	            </p>
-	            <p>
-	                <em>Repository Link:</em> <a target="_blank" href="${request.repositoryLink}">Here</a>
-		        </p>
-			</div>
+			<c:choose>
+			    <c:when test="${request.isBroken==true}">
+			    	<div class="col-md-5 col-sm-12 requestBox">
+						<p class="cardTitle">${request.title} (<span id="broken">Broken</span>)</p>
+				        <p>
+				            ${request.description}
+			            </p>
+			            <p>
+			                <em>Repository Link:</em> <a target="_blank" href="${request.repositoryLink}">Here</a>
+				        </p>
+				        
+				        
+				 
+				        
+				        <p class="cardTitle align-text-bottom">Reviewer Feedback</p>
+				        <p>
+			                ${request.reviewerFeedback}
+				        </p>
+				        
+				
+				        
+					</div>
+			    </c:when>    
+			    <c:otherwise>
+			    	<div class="col-md-5 col-sm-12 requestBox">
+						<p class="cardTitle">${request.title} (<span id="solved">Solved</span>)</p>
+				        <p>
+				            ${request.description}
+			            </p>
+			            <p>
+			                <em>Repository Link:</em> <a target="_blank" href="${request.repositoryLink}">Here</a>
+				        </p>
+				   	     				  
+					    <p class="cardTitle">Reviewer Feedback</p>
+					    <p>
+				        	${request.reviewerFeedback}
+					    </p>
+					 
+					</div>
+			    </c:otherwise>
+			</c:choose>
 		</c:forEach>
 	</div>
 </div>
 
-<%-- <div class="container">
-	
-	<c:forEach items="${requests}" var="request">
-	    <div class="row justify-content-center align-items-center">
-	        <div class="col-md-7 col-sm-12 cardTextSeparated">
-	            <p class="cardTitle">${request.title}</p>
-	            <p>
-	                ${request.description}
-	            </p>
-	            <p>
-	                <em>Repository Link:</em> <a target="_blank" href="${request.repositoryLink}">Here</a>
-	            </p>
-	        </div>
-	    </div>
-	</c:forEach>
 
-</div> --%>
 
 <script type="text/javascript" src="${contextPath}/plugins/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="${contextPath}/plugins/popper.min.js"></script>

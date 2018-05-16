@@ -5,7 +5,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #444;
-    background-image: url("../assets/img/mirrored-squares.png");
+    /* background-image: url("../assets/img/mirrored-squares.png"); */
     overflow-x: hidden;
 }
 
@@ -39,7 +39,7 @@ body {
     text-align: center;
     margin-bottom: 9%;
     /* margin-top: -4%; */
-    color: #ff6369;
+    /* color: #ff6369; */
     /* letter-spacing: 20px; */
     list-style-type: none;
 }
@@ -94,3 +94,10 @@ body {
     color: rgba(0, 0, 0, 0.5);
 }
 
+#solved {
+	color: green;
+}
+
+#broken {
+	color: red;
+}
