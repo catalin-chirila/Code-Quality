@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.codequality.entity.ReviewRequest;
+import com.codequality.entity.User;
 import com.codequality.service.ReviewRequestImpl;
 import com.codequality.service.UserServiceImpl;
 
@@ -34,6 +37,12 @@ public class ReviewerController {
     public String getIndividualReviewRequest(@PathVariable(value = "id") Long requestId, Model model, Principal principal) {
 		model.addAttribute("individualRequest", reviewRequestImpl.findReviewRequestById(requestId));
         return "/reviewer/requests/individual";
+    }
+	
+	@RequestMapping(value = {"/update-review-request/{id}"}, method = RequestMethod.POST)
+    public String createReviewRequest(@PathVariable(value = "id") Long requestId, @ModelAttribute("individualRequest") ReviewRequest updateData, BindingResult result) {
+		reviewRequestImpl.updateReviewRequest(updateData, updateData.getId());
+        return "redirect:/reviewer/home";
     }
 }
 

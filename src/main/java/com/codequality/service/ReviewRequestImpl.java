@@ -22,4 +22,14 @@ public class ReviewRequestImpl {
 	public ReviewRequest findReviewRequestById(Long id) {
 		return reviewRequestRepository.findReviewRequestById(id);
 	}
+	
+	public void updateReviewRequest(ReviewRequest updateData, Long requestId) {
+		ReviewRequest reviewRequest = findReviewRequestById(requestId);
+		reviewRequest.setOpen(false);
+		if (updateData.getIsBroken() != null && updateData.getIsBroken() == true) {
+			reviewRequest.setIsBroken(true);
+		}
+		reviewRequest.setReviewerFeedback(updateData.getReviewerFeedback());	
+		reviewRequestRepository.save(reviewRequest);
+	}
 }

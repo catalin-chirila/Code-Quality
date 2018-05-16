@@ -48,7 +48,7 @@
                 ${individualRequest.description}
             </p>
             <p>
-                <em>Repository Link:</em> <a target="_blank" href="${individualRequest.repositoryLink}">Here</a>
+                Repository Link: <a target="_blank" href="${individualRequest.repositoryLink}">Here</a>
 	        </p>
 		</div>
 	</div>
@@ -56,7 +56,7 @@
 
 	<div class="row justify-content-center align-items-center" id="feedback">
 		<div class="col-md-7 col-sm-12 requestBox">
-		<form:form action="/create-review-request" method="PUT" modelAttribute="individualRequest">
+		<form:form action="/update-review-request/${individualRequest.id}" method="POST" modelAttribute="individualRequest">
 		  <div class="form-group">
 		    <form:label for="reviewerFeedback" path="reviewerFeedback">Feedback</form:label>
 		    <form:textarea class="form-control form-control-lg" id="reviewerFeedback" path="reviewerFeedback" placeholder="Feedback.." rows="3" name="description"></form:textarea>
