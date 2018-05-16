@@ -14,6 +14,7 @@ public class ReviewRequestImpl {
 	
 	public void saveOpenReviewRequest(ReviewRequest reviewRequest, User user) {
 		reviewRequest.setOpen(true);
+		reviewRequest.setIsBroken(false);
 		reviewRequest.setUser(user);
 		reviewRequestRepository.save(reviewRequest);
 	}

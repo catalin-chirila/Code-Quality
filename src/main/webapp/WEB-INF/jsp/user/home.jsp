@@ -6,12 +6,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Welcome</title>
+	<title>Home</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
 	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css">
-	<link rel="stylesheet" href="../../css/home.css">
+	<link rel="stylesheet" href="${contextPath}/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${contextPath}/css/user/home.css">
 </head>
 <body>
 
@@ -61,7 +61,7 @@
        </div>
     </div>
 
-	<div class="row justify-content-center align-items-center">
+	<div class="row justify-content-center ">
 		<c:forEach items="${requests}" var="request">
 			<div class="col-md-5 col-sm-12 requestBox">
 		        <p class="cardTitle">${request.title}</p>
@@ -69,34 +69,18 @@
 	                ${request.description}
 	            </p>
 	            <p>
-	                <em>Repository Link:</em> <a target="_blank" href="${request.repositoryLink}">Here</a>
+	                <span id="repositoryLink">Repository Link:</span> <a target="_blank" href="${request.repositoryLink}">Here</a>
 		        </p>
+		        
 			</div>
 		</c:forEach>
 	</div>
 </div>
 
-<%-- <div class="container">
-	
-	<c:forEach items="${requests}" var="request">
-	    <div class="row justify-content-center align-items-center">
-	        <div class="col-md-7 col-sm-12 cardTextSeparated">
-	            <p class="cardTitle">${request.title}</p>
-	            <p>
-	                ${request.description}
-	            </p>
-	            <p>
-	                <em>Repository Link:</em> <a target="_blank" href="${request.repositoryLink}">Here</a>
-	            </p>
-	        </div>
-	    </div>
-	</c:forEach>
 
-</div> --%>
-
-<script type="text/javascript" src="../../plugins/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="../../plugins/popper.min.js"></script>
-<script type="text/javascript" src="../../plugins/bootstrap.min.js"></script>
+<script type="text/javascript" src="${contextPath}/plugins/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="${contextPath}/plugins/popper.min.js"></script>
+<script type="text/javascript" src="${contextPath}/plugins/bootstrap.min.js"></script>
 
 </body>
 </html>

@@ -10,8 +10,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
 	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css">
-	<link rel="stylesheet" href="../../css/home.css">
+	<link rel="stylesheet" href="${contextPath}/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${contextPath}/css/user/closed-reviews.css">
 </head>
 <body>
 
@@ -94,9 +94,9 @@
 
 </div> --%>
 
-<script type="text/javascript" src="../../plugins/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="../../plugins/popper.min.js"></script>
-<script type="text/javascript" src="../../plugins/bootstrap.min.js"></script>
+<script type="text/javascript" src="${contextPath}/plugins/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="${contextPath}/plugins/popper.min.js"></script>
+<script type="text/javascript" src="${contextPath}/plugins/bootstrap.min.js"></script>
 
 </body>
 </html>

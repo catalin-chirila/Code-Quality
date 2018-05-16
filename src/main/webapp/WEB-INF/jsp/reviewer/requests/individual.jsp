@@ -7,13 +7,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Welcome</title>
+	<title>Individual Review Request</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
 	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-	<link rel="stylesheet" href="../../css/bootstrap.min.css">
-	<link rel="stylesheet" href="../../css/home.css">
-	<link rel="stylesheet" href="../../css/reviewer/individual.css">
+	<link rel="stylesheet" href="${contextPath}/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${contextPath}/css/reviewer/individual.css">
 </head>
 <body>
 
@@ -26,23 +25,11 @@
 	</button>
 	
 	<div class="collapse navbar-collapse " id="navbarSupportedContent">
-		<ul class="navbar-nav mx-auto">
+		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="nav-link underline" href="/user/requests/create">Add Review Request</a>
+				<a class="nav-link underline" href="/reviewer/home">&lt;Go Back</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link underline" href="/user/requests/closed">Check Closed Requests</a>
-			</li>
-
-			<li class="nav-item">
-				<a class="nav-link underline" href="/profile/edit">Edit Profile</a>
-			</li>
-
-			<li class="nav-item">
-			<c:if test="${pageContext.request.userPrincipal.name != null}">
-				<a class="nav-link underline" href="/logout">Log Out</a>
-			</c:if>
-			</li>
+			
 		</ul>
 	</div>
 </nav>
@@ -76,16 +63,17 @@
 		  </div>
 		
 		  <form:button type="submit" class="btn btn-success btn-lg btn-block">Submit Feedback</form:button>
-		  <form:button type="submit" class="btn btn-danger btn-lg btn-block">Mark Request As Broken</form:button>
+		  <%-- <form:button type="submit" class="btn btn-danger btn-lg btn-block">Mark Request As Broken</form:button> --%>
+		  <form:button id="isBroken" type="submit" class="btn btn-danger btn-lg btn-block" name="isBroken" path="isBroken" value="true">Mark Request As Broken</form:button>
 		</form:form>
 		</div>
 	</div>
 </div>
 
 
-<script type="text/javascript" src="../../plugins/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="../../plugins/popper.min.js"></script>
-<script type="text/javascript" src="../../plugins/bootstrap.min.js"></script>
+<script type="text/javascript" src="${contextPath}/plugins/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="${contextPath}/plugins/popper.min.js"></script>
+<script type="text/javascript" src="${contextPath}/plugins/bootstrap.min.js"></script>
 
 </body>
 </html>
