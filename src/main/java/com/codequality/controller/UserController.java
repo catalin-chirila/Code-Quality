@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -67,6 +68,18 @@ public class UserController {
     public String getClosedReviewRequests(Model model, Principal principal) {
     	model.addAttribute("requests", userServiceImpl.getClosedReviewRequestsByUsername(principal.getName()));
         return "/user/requests/closed";
+    }
+    
+    @RequestMapping(value = {"/user/request/{id}"}, method = RequestMethod.GET)
+    public String getOpenIndividualReviewRequest(@PathVariable(value = "id") Long requestId, Model model, Principal principal) {
+		model.addAttribute("individualRequest", reviewRequestImpl.findReviewRequestById(requestId));
+        return "/user/requests/individual";
+    }
+    
+    @RequestMapping(value = {"/user/request/closed/{id}"}, method = RequestMethod.GET)
+    public String getSolvedIndividualReviewRequest(@PathVariable(value = "id") Long requestId, Model model, Principal principal) {
+		model.addAttribute("individualRequest", reviewRequestImpl.findReviewRequestById(requestId));
+        return "/user/requests/individual-closed";
     }
     
     

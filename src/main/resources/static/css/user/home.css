@@ -33,13 +33,14 @@ body {
     margin-top: 150px;
 }
 
-#brasov {
+#pageTitle {
     font-weight: bold;
-    font-size: 5em;
+    font-size: 6em;
     text-align: center;
-    margin-bottom: 7%;
+    margin-bottom: 14%;
     margin-top: -2%;
-    /* color: #ff6369; */
+    color: #ff6369; 
+    /* color: pink; */
 }
 
 .row {
@@ -48,7 +49,8 @@ body {
 
 .cardTitle {
     /* color: #126a76; */
-    font-size: 1.8em;
+    margin-top: 5px;
+    font-size: 1.5em;
     font-weight: 500;
     font-family: 'Oswald', 'Lato', serif;
 }
@@ -58,7 +60,6 @@ body {
 .requestBox {
     font-size: 2.3em;
     font-weight: 400;
-    /* font-family: 'Lato', serif;  */
     color: rgba(0, 0, 0,0.7);
     background: none;
     -webkit-box-shadow: 1px 6px 19px 0px rgba(0,0,0,0.19);
@@ -92,5 +93,13 @@ body {
     color: rgba(0, 0, 0, 0.5);
 }
 
+#needReview{
+	color: #007bff;
+}
 
+#linkRequestBox {
+	padding-top: 1%;
+	padding-bottom: 1%;
+	
+}
 

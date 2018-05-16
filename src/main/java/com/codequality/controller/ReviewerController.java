@@ -39,6 +39,7 @@ public class ReviewerController {
         return "/reviewer/requests/individual";
     }
 	
+	
 	@RequestMapping(value = {"/update-review-request/{id}"}, method = RequestMethod.POST)
     public String createReviewRequest(@PathVariable(value = "id") Long requestId, @ModelAttribute("individualRequest") ReviewRequest updateData, BindingResult result) {
 		reviewRequestImpl.updateReviewRequest(updateData, updateData.getId());

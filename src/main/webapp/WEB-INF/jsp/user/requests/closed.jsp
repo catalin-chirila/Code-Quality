@@ -55,44 +55,15 @@
 	<div class="row justify-content-center h-100">
 		<c:forEach items="${requests}" var="request">
 			<c:choose>
-			    <c:when test="${request.isBroken==true}">
-			    	<div class="col-md-5 col-sm-12 requestBox">
-						<p class="cardTitle">${request.title} (<span id="broken">Broken</span>)</p>
-				        <p>
-				            ${request.description}
-			            </p>
-			            <p>
-			                <em>Repository Link:</em> <a target="_blank" href="${request.repositoryLink}">Here</a>
-				        </p>
-				        
-				        
-				 
-				        
-				        <p class="cardTitle align-text-bottom">Reviewer Feedback</p>
-				        <p>
-			                ${request.reviewerFeedback}
-				        </p>
-				        
-				
-				        
-					</div>
+			    <c:when test="${request.isBroken==true}">			    					
+					<a class="col-md-5 col-sm-12 requestBox requestLink" id="linkRequestBox" href="/user/request/closed/${request.id}">			
+			      		<span class="cardTitle">${request.title} (<span id="broken">Broken</span>)</span>				
+					</a>						
 			    </c:when>    
-			    <c:otherwise>
-			    	<div class="col-md-5 col-sm-12 requestBox">
-						<p class="cardTitle">${request.title} (<span id="solved">Solved</span>)</p>
-				        <p>
-				            ${request.description}
-			            </p>
-			            <p>
-			                <em>Repository Link:</em> <a target="_blank" href="${request.repositoryLink}">Here</a>
-				        </p>
-				   	     				  
-					    <p class="cardTitle">Reviewer Feedback</p>
-					    <p>
-				        	${request.reviewerFeedback}
-					    </p>
-					 
-					</div>
+			    <c:otherwise>	
+					<a class="col-md-5 col-sm-12 requestBox requestLink" id="linkRequestBox" href="/user/request/closed/${request.id}">			
+			      		<span class="cardTitle">${request.title} (<span id="solved">Solved</span>)</span>				
+					</a>	
 			    </c:otherwise>
 			</c:choose>
 		</c:forEach>

@@ -31,16 +31,6 @@
 			<li class="nav-item">
 				<a class="nav-link underline" href="/user/requests/closed">Check Closed Requests</a>
 			</li>
-			<!--<li class="nav-item dropdown">
-				<a class="nav-link underline" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Edit Profile </a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a id="councilSquare" class="dropdown-item" href="/logout">The Council Square</a>
-					<a id="blackChurch" class="dropdown-item" href="${contextPath}/logout">The Black Church</a>
-					<a id="defensiveFortifications" class="dropdown-item" href="#">Brasov's Defensive Fortifications</a>
-					
-				</div>
-			</li> -->
-
 			<li class="nav-item">
 				<a class="nav-link underline" href="/profile/edit">Edit Profile</a>
 			</li>
@@ -54,7 +44,7 @@
 	</div>
 </nav>
 
-<div class="container">
+<%-- <div class="container">
 	<div class="row justify-content-center align-items-center">
        <div class="col-md-6 col-sm-12">
            <h2 id="brasov">Open Review Requests</h2>
@@ -73,6 +63,23 @@
 		        </p>
 		        
 			</div>
+		</c:forEach>
+	</div>
+</div> --%>
+
+
+<div class="container">
+	<div class="row justify-content-center align-items-center">
+       <div class="col-md-6 col-sm-12">
+           <h2 id="pageTitle">Open Review Requests</h2>
+       </div>
+    </div>
+
+	<div class="row justify-content-center">
+		<c:forEach items="${requests}" var="request">
+			<a class="col-md-5 col-sm-12 requestBox requestLink" id="linkRequestBox" href="/user/request/${request.id}">			
+			      <span class="cardTitle">${request.title} (<span id="needReview">Need Review</span>)</span>				
+			</a>	
 		</c:forEach>
 	</div>
 </div>
