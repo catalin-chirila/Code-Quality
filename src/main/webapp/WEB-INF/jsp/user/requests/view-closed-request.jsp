@@ -12,7 +12,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
 	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="${contextPath}/css/bootstrap.min.css">
-	<link rel="stylesheet" href="${contextPath}/css/reviewer/individual.css">
+	<link rel="stylesheet" href="${contextPath}/css/user/view-closed-request.css">
 </head>
 <body>
 
@@ -27,7 +27,7 @@
 	<div class="collapse navbar-collapse " id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="nav-link underline" href="/reviewer/home">&lt;Go Back</a>
+				<a class="nav-link underline" href="/user/requests/closed/all">&lt;Go Back</a>
 			</li>
 			
 		</ul>
@@ -42,32 +42,44 @@
     </div>
 
 	<div class="row justify-content-center align-items-center">		
-		<div class="col-md-7 col-sm-12 requestBox">
-	        <p class="cardTitle">${individualRequest.title}</p>
+	
+	<c:choose>
+		<c:when test="${individualRequest.isBroken==true}">			    					
+			<div class="col-md-7 col-sm-12 requestBox">
+	        <p class="cardTitle">${individualRequest.title} (<span id="broken">Broken</span>)</p>
             <p>
                 ${individualRequest.description}
             </p>
             <p>
                 Repository Link: <a target="_blank" href="${individualRequest.repositoryLink}">Here</a>
 	        </p>
-		</div>
-	</div>
-
-
-	<div class="row justify-content-center align-items-center" id="feedback">
-		<div class="col-md-7 col-sm-12 requestBox">
-		<form:form action="/update-review-request/${individualRequest.id}" method="POST" modelAttribute="individualRequest">
-		  <div class="form-group">
-		    <form:label for="reviewerFeedback" path="reviewerFeedback">Feedback</form:label>
-		    <form:textarea class="form-control form-control-lg" id="reviewerFeedback" path="reviewerFeedback" placeholder="Feedback.." rows="3" name="description"></form:textarea>
-		  </div>
+	        
+	        <p class="cardTitle">Reviewer Feedback</p>
+	        <p>
+                ${individualRequest.reviewerFeedback}
+	        </p>		   
+		</div>					
+	    </c:when>    
+	    <c:otherwise>	
+	    	<div class="col-md-7 col-sm-12 requestBox">
+	        <p class="cardTitle">${individualRequest.title} (<span id="solved">Solved</span>)</p>
+            <p>
+                ${individualRequest.description}
+            </p>
+            <p>
+                Repository Link: <a target="_blank" href="${individualRequest.repositoryLink}">Here</a>
+	        </p>
+	        
+	        <p class="cardTitle">Reviewer Feedback</p>
+	        <p>
+                ${individualRequest.reviewerFeedback}
+	        </p>	   
+		</div>	
+		</c:otherwise>
+	</c:choose>
 		
-		  <form:button type="submit" class="btn btn-success btn-lg btn-block">Submit Feedback</form:button>
-		  <%-- <form:button type="submit" class="btn btn-danger btn-lg btn-block">Mark Request As Broken</form:button> --%>
-		  <form:button id="isBroken" type="submit" class="btn btn-danger btn-lg btn-block" name="isBroken" path="isBroken" value="true">Mark Request As Broken</form:button>
-		</form:form>
-		</div>
 	</div>
+
 </div>
 
 

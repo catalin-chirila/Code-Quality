@@ -6,12 +6,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Welcome</title>
+	<title>Home | Open Review Requests</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
 	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="${contextPath}/css/bootstrap.min.css">
-	<link rel="stylesheet" href="${contextPath}/css/reviewer/open.css">
+	<link rel="stylesheet" href="${contextPath}/css/reviewer/view-all-open-requests.css">
 </head>
 <body>
 
@@ -26,20 +26,8 @@
 	<div class="collapse navbar-collapse " id="navbarSupportedContent">
 		<ul class="navbar-nav mx-auto">
 			<li class="nav-item">
-				<a class="nav-link underline" href="/user/requests/create">Add Review Request</a>
-			</li>
-			<li class="nav-item">
 				<a class="nav-link underline" href="/user/requests/closed">Check Closed Requests</a>
 			</li>
-			<!--<li class="nav-item dropdown">
-				<a class="nav-link underline" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Edit Profile </a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a id="councilSquare" class="dropdown-item" href="/logout">The Council Square</a>
-					<a id="blackChurch" class="dropdown-item" href="${contextPath}/logout">The Black Church</a>
-					<a id="defensiveFortifications" class="dropdown-item" href="#">Brasov's Defensive Fortifications</a>
-					
-				</div>
-			</li> -->
 
 			<li class="nav-item">
 				<a class="nav-link underline" href="/profile/edit">Edit Profile</a>
@@ -57,42 +45,19 @@
 <div class="container">
 	<div class="row justify-content-center align-items-center">
        <div class="col-md-6 col-sm-12">
-           <h2 id="brasov">Open Review Requests</h2>
+           <h2 id="pageTitle">Open Review Requests</h2>
        </div>
     </div>
 
-	<div class="row justify-content-center align-items-center">
+	<div class="row justify-content-center">
 		<c:forEach items="${requests}" var="request">
-			<div class="col-md-5 col-sm-12 requestBox">
-		        <p class="cardTitle">${request.title}</p>
-	            <p>
-	                ${request.description}
-	            </p>
-	            <p>
-	                <em>Repository Link:</em> <a target="_blank" href="${request.repositoryLink}">Here</a>
-		        </p>
-			</div>
+			<a class="col-md-5 col-sm-12 requestBox requestLink" id="linkRequestBox" href="/reviewer/request/${request.id}">			
+			      <span class="cardTitle">${request.title} (<span id="needReview">Need Review</span>)</span>				
+			</a>	
 		</c:forEach>
 	</div>
 </div>
 
-<%-- <div class="container">
-	
-	<c:forEach items="${requests}" var="request">
-	    <div class="row justify-content-center align-items-center">
-	        <div class="col-md-7 col-sm-12 cardTextSeparated">
-	            <p class="cardTitle">${request.title}</p>
-	            <p>
-	                ${request.description}
-	            </p>
-	            <p>
-	                <em>Repository Link:</em> <a target="_blank" href="${request.repositoryLink}">Here</a>
-	            </p>
-	        </div>
-	    </div>
-	</c:forEach>
-
-</div> --%>
 
 <script type="text/javascript" src="${contextPath}/plugins/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="${contextPath}/plugins/popper.min.js"></script>

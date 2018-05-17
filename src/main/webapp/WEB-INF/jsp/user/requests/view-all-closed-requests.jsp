@@ -6,12 +6,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Home | Open Review Requests</title>
+	<title>Welcome</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
 	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="${contextPath}/css/bootstrap.min.css">
-	<link rel="stylesheet" href="${contextPath}/css/reviewer/home.css">
+	<link rel="stylesheet" href="${contextPath}/css/user/view-all-closed-requests.css">
 </head>
 <body>
 
@@ -26,17 +26,19 @@
 	<div class="collapse navbar-collapse " id="navbarSupportedContent">
 		<ul class="navbar-nav mx-auto">
 			<li class="nav-item">
-				<a class="nav-link underline" href="/user/requests/closed">Check Closed Requests</a>
+				<a class="nav-link underline" href="/user/home">Home</a>
 			</li>
-
 			<li class="nav-item">
-				<a class="nav-link underline" href="/profile/edit">Edit Profile</a>
+				<a class="nav-link underline" href="/user/requests/create">Add Review Request</a>
 			</li>
-
 			<li class="nav-item">
-			<c:if test="${pageContext.request.userPrincipal.name != null}">
-				<a class="nav-link underline" href="/logout">Log Out</a>
-			</c:if>
+				<a class="nav-link underline" href="/user/requests/open/all">Check Open Requests</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link underline" href="/user/profile/edit">Edit Profile</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link underline" href="/logout">Log Out</a>		
 			</li>
 		</ul>
 	</div>
@@ -45,18 +47,28 @@
 <div class="container">
 	<div class="row justify-content-center align-items-center">
        <div class="col-md-6 col-sm-12">
-           <h2 id="pageTitle">Open Review Requests</h2>
+           <h2 id="brasov">Closed Review Requests</h2>
        </div>
     </div>
 
-	<div class="row justify-content-center">
+	<div class="row justify-content-center h-100">
 		<c:forEach items="${requests}" var="request">
-			<a class="col-md-5 col-sm-12 requestBox requestLink" id="linkRequestBox" href="/reviewer/request/${request.id}">			
-			      <span class="cardTitle">${request.title} (<span id="needReview">Need Review</span>)</span>				
-			</a>	
+			<c:choose>
+			    <c:when test="${request.isBroken==true}">			    					
+					<a class="col-md-5 col-sm-12 requestBox requestLink" id="linkRequestBox" href="/user/request/closed/${request.id}">			
+			      		<span class="cardTitle">${request.title} (<span id="broken">Broken</span>)</span>				
+					</a>						
+			    </c:when>    
+			    <c:otherwise>	
+					<a class="col-md-5 col-sm-12 requestBox requestLink" id="linkRequestBox" href="/user/request/closed/${request.id}">			
+			      		<span class="cardTitle">${request.title} (<span id="solved">Solved</span>)</span>				
+					</a>	
+			    </c:otherwise>
+			</c:choose>
 		</c:forEach>
 	</div>
 </div>
+
 
 
 <script type="text/javascript" src="${contextPath}/plugins/jquery-3.3.1.min.js"></script>

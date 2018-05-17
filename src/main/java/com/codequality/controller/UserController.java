@@ -1,9 +1,6 @@
 package com.codequality.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
-
-import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,14 +9,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.codequality.entity.ReviewRequest;
 import com.codequality.entity.User;
 import com.codequality.service.ReviewRequestImpl;
 import com.codequality.service.UserService;
 import com.codequality.service.UserServiceImpl;
-
-
 
 @Controller
 public class UserController {
@@ -43,45 +39,54 @@ public class UserController {
 
         return "login";
     }
-   
-    @RequestMapping(value = {"/user/home"}, method = RequestMethod.GET)
-    public String getUserHome(Model model, Principal principal) {
-    	model.addAttribute("requests", userServiceImpl.getOpenReviewRequestsByUsername(principal.getName()));
-        return "/user/home";
-    }
     
-    @RequestMapping(value = {"/user/requests/create"}, method = RequestMethod.GET)
-    public String getUserCreateReviewRequest(Model model, Principal principal) {
-    	model.addAttribute("reviewRequest", new ReviewRequest());
-        return "/user/requests/create";
-    }
-    
-    @RequestMapping(value = {"/create-review-request"}, method = RequestMethod.PUT)
-    public String createReviewRequest(@ModelAttribute("reviewRequest") ReviewRequest reviewRequest, Principal principal, BindingResult result) {
-    	User user = userServiceImpl.findByUsername(principal.getName());
-    	reviewRequestImpl.saveOpenReviewRequest(reviewRequest, user);
-        return "redirect:/user/home";
-    }
-    
-    
-    @RequestMapping(value = {"/user/requests/closed"}, method = RequestMethod.GET)
-    public String getClosedReviewRequests(Model model, Principal principal) {
-    	model.addAttribute("requests", userServiceImpl.getClosedReviewRequestsByUsername(principal.getName()));
-        return "/user/requests/closed";
-    }
-    
-    @RequestMapping(value = {"/user/request/{id}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/user/request/open/{id}"}, method = RequestMethod.GET)
     public String getOpenIndividualReviewRequest(@PathVariable(value = "id") Long requestId, Model model, Principal principal) {
 		model.addAttribute("individualRequest", reviewRequestImpl.findReviewRequestById(requestId));
-        return "/user/requests/individual";
+        return "/user/requests/view-open-request";
     }
     
     @RequestMapping(value = {"/user/request/closed/{id}"}, method = RequestMethod.GET)
     public String getSolvedIndividualReviewRequest(@PathVariable(value = "id") Long requestId, Model model, Principal principal) {
 		model.addAttribute("individualRequest", reviewRequestImpl.findReviewRequestById(requestId));
-        return "/user/requests/individual-closed";
+        return "/user/requests/view-closed-request";
+    }
+   
+    @RequestMapping(value = {"/user/requests/open/all"}, method = RequestMethod.GET)
+    public String getUserHome(Model model, Principal principal) {
+    	model.addAttribute("requests", userServiceImpl.getOpenReviewRequestsByUsername(principal.getName()));
+        return "/user/requests/view-all-open-requests";
     }
     
+    @RequestMapping(value = {"/user/requests/closed/all"}, method = RequestMethod.GET)
+    public String getClosedReviewRequests(Model model, Principal principal) {
+    	model.addAttribute("requests", userServiceImpl.getClosedReviewRequestsByUsername(principal.getName()));
+        return "/user/requests/view-all-closed-requests";
+    }
+	
+    @RequestMapping(value = {"/user/requests/create"}, method = RequestMethod.GET)
+    public String getUserCreateReviewRequest(Model model) {
+    	model.addAttribute("reviewRequest", new ReviewRequest());
+        return "/user/requests/create-request";
+    }
     
-   
+    @RequestMapping(value = {"/create/request"}, method = RequestMethod.PUT)
+    public String createReviewRequest(@ModelAttribute("reviewRequest") ReviewRequest reviewRequest, Principal principal, BindingResult result) {
+    	User user = userServiceImpl.findByUsername(principal.getName());
+    	reviewRequestImpl.saveOpenReviewRequest(reviewRequest, user);
+        return "redirect:/user/requests/view-all-open-requests";
+    } 
+    
+    @RequestMapping(value = {"/register"}, method = RequestMethod.GET)
+    public String register(Model model) {
+    	model.addAttribute("user", new User());
+        return "/register";
+    }
+    
+    @RequestMapping(value = {"/create/user"}, method = RequestMethod.PUT)
+    public String createNewUser(@RequestParam String role, @ModelAttribute("user") User user, BindingResult result) {
+//    	User user = userServiceImpl.findByUsername(principal.getName());
+//    	reviewRequestImpl.saveOpenReviewRequest(reviewRequest, user);
+        return "redirect:/user/requests/view-all-open-requests";
+    } 
 }

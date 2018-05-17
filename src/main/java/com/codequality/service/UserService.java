@@ -6,6 +6,6 @@ import com.codequality.entity.User;
 
 @Repository
 public interface UserService {
-    void save(User user);
+    void save(User user, String role);
     User findByUsername(String username);
-   }
+ }

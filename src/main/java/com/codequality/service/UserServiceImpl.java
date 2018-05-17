@@ -7,9 +7,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.codequality.entity.ReviewRequest;
+import com.codequality.entity.Role;
 import com.codequality.entity.User;
 
 import com.codequality.repository.RoleRepository;
@@ -22,11 +24,22 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-    @SuppressWarnings("unchecked")
-    public void save(User user) {
-        user.setPasswordHash(user.getPasswordHash());
-        user.setRoles(new HashSet(roleRepository.findAll()));
-        userRepository.save(user);
+    public void save(User user, String role) {
+    	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(user.getPasswordHash());
+        user.setPasswordHash(hashedPassword);          
+    	
+    	if (role.equals("user")) { 	         
+    		Set<Role> roles = new HashSet<>();           
+            roles.add(roleRepository.findByName("USER"));
+            user.setRoles(roles);      
+            userRepository.save(user);
+    	} else if (role.equals("reviewer")) {
+    		Set<Role> roles = new HashSet<>();           
+            roles.add(roleRepository.findByName("REVIEWER"));
+            user.setRoles(roles);      
+            userRepository.save(user);
+    	}  	
     }
 
     public User findByUsername(String username) {

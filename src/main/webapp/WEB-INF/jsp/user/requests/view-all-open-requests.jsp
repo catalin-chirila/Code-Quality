@@ -11,7 +11,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
 	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="${contextPath}/css/bootstrap.min.css">
-	<link rel="stylesheet" href="${contextPath}/css/user/home.css">
+	<link rel="stylesheet" href="${contextPath}/css/user/view-all-open-requests.css">
 </head>
 <body>
 
@@ -26,47 +26,23 @@
 	<div class="collapse navbar-collapse " id="navbarSupportedContent">
 		<ul class="navbar-nav mx-auto">
 			<li class="nav-item">
+				<a class="nav-link underline" href="/user/home">Home</a>
+			</li>
+			<li class="nav-item">
 				<a class="nav-link underline" href="/user/requests/create">Add Review Request</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link underline" href="/user/requests/closed">Check Closed Requests</a>
+				<a class="nav-link underline" href="/user/requests/closed/all">Check Closed Requests</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link underline" href="/profile/edit">Edit Profile</a>
+				<a class="nav-link underline" href="/user/profile/edit">Edit Profile</a>
 			</li>
-
 			<li class="nav-item">
-			<c:if test="${pageContext.request.userPrincipal.name != null}">
-				<a class="nav-link underline" href="/logout">Log Out</a>
-			</c:if>
+				<a class="nav-link underline" href="/logout">Log Out</a>		
 			</li>
 		</ul>
 	</div>
 </nav>
-
-<%-- <div class="container">
-	<div class="row justify-content-center align-items-center">
-       <div class="col-md-6 col-sm-12">
-           <h2 id="brasov">Open Review Requests</h2>
-       </div>
-    </div>
-
-	<div class="row justify-content-center ">
-		<c:forEach items="${requests}" var="request">
-			<div class="col-md-5 col-sm-12 requestBox">
-		        <p class="cardTitle">${request.title}</p>
-	            <p>
-	                ${request.description}
-	            </p>
-	            <p>
-	                <span id="repositoryLink">Repository Link:</span> <a target="_blank" href="${request.repositoryLink}">Here</a>
-		        </p>
-		        
-			</div>
-		</c:forEach>
-	</div>
-</div> --%>
-
 
 <div class="container">
 	<div class="row justify-content-center align-items-center">
@@ -77,7 +53,7 @@
 
 	<div class="row justify-content-center">
 		<c:forEach items="${requests}" var="request">
-			<a class="col-md-5 col-sm-12 requestBox requestLink" id="linkRequestBox" href="/user/request/${request.id}">			
+			<a class="col-md-5 col-sm-12 requestBox requestLink" id="linkRequestBox" href="/user/request/open/${request.id}">			
 			      <span class="cardTitle">${request.title} (<span id="needReview">Need Review</span>)</span>				
 			</a>	
 		</c:forEach>
