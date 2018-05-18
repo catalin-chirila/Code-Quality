@@ -24,7 +24,6 @@
 	</div>
 	<div class="row justify-content-center align-items-center menu-buttons">
 		<div class="col-md-6 col-sm-12">
-			<a href="/reviewer/requests/create" class="btn btn-success btn-lg btn-block menu">Create a Review Request</a>
 			<a href="/reviewer/requests/open/all" class="btn btn-success btn-lg btn-block menu">Check Open Requests</a>
 			<a href="/reviewer/requests/closed/all" class="btn btn-success btn-lg btn-block menu">Check Closed Requests</a>
 			<a href="/reviewer/profile/edit" class="btn btn-success btn-lg btn-block menu">Edit Profile</a>

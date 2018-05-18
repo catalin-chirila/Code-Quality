@@ -41,48 +41,41 @@ public class UserController {
         return "login";
     }
     
-    @PreAuthorize("hasAuthority('USER')")
     @RequestMapping(value = "/user/home", method = RequestMethod.GET)
     public String getHomePage() {
         return "/user/home";
     }
     
-    @PreAuthorize("hasAuthority('USER')")
     @RequestMapping(value = {"/user/request/open/{id}"}, method = RequestMethod.GET)
     public String getOpenIndividualReviewRequest(@PathVariable(value = "id") Long requestId, Model model, Principal principal) {
 		model.addAttribute("individualRequest", reviewRequestImpl.findReviewRequestById(requestId));
         return "/user/requests/view-open-request";
     }
     
-    @PreAuthorize("hasAuthority('USER')")
     @RequestMapping(value = {"/user/request/closed/{id}"}, method = RequestMethod.GET)
     public String getSolvedIndividualReviewRequest(@PathVariable(value = "id") Long requestId, Model model, Principal principal) {
 		model.addAttribute("individualRequest", reviewRequestImpl.findReviewRequestById(requestId));
         return "/user/requests/view-closed-request";
     }
    
-    @PreAuthorize("hasAuthority('USER')")
     @RequestMapping(value = {"/user/requests/open/all"}, method = RequestMethod.GET)
     public String getUserHome(Model model, Principal principal) {
     	model.addAttribute("requests", userServiceImpl.getOpenReviewRequestsByUsername(principal.getName()));
         return "/user/requests/view-all-open-requests";
     }
     
-    @PreAuthorize("hasAuthority('USER')")
     @RequestMapping(value = {"/user/requests/closed/all"}, method = RequestMethod.GET)
     public String getClosedReviewRequests(Model model, Principal principal) {
     	model.addAttribute("requests", userServiceImpl.getClosedReviewRequestsByUsername(principal.getName()));
         return "/user/requests/view-all-closed-requests";
     }
 	
-    @PreAuthorize("hasAuthority('USER')")
     @RequestMapping(value = {"/user/requests/create"}, method = RequestMethod.GET)
     public String getUserCreateReviewRequest(Model model) {
     	model.addAttribute("reviewRequest", new ReviewRequest());
         return "/user/requests/create-request";
     }
     
-    @PreAuthorize("hasAuthority('USER')")
     @RequestMapping(value = {"/create/request"}, method = RequestMethod.PUT)
     public String createReviewRequest(@ModelAttribute("reviewRequest") ReviewRequest reviewRequest, Principal principal, BindingResult result) {
     	User user = userServiceImpl.findByUsername(principal.getName());

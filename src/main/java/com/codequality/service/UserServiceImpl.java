@@ -29,17 +29,18 @@ public class UserServiceImpl implements UserService {
         String hashedPassword = passwordEncoder.encode(user.getPasswordHash());
         user.setPasswordHash(hashedPassword);           
     	
-    	if (role.equals("user")) { 	         
+    	if (role.equals("USER")) { 	         
     		Set<Role> roles = new HashSet<>();           
             roles.add(roleRepository.findByName("USER"));
             user.setRoles(roles);      
             userRepository.save(user);
-    	} else if (role.equals("reviewer")) {
+    	} else if (role.equals("REVIEWER")) {
     		Set<Role> roles = new HashSet<>();           
             roles.add(roleRepository.findByName("REVIEWER"));
             user.setRoles(roles);      
             userRepository.save(user);
     	}  	
+
     }
 
     public User findByUsername(String username) {

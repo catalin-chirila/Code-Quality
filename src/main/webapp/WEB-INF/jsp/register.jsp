@@ -52,8 +52,8 @@
 	   <div class="form-group">
 	    <label for="role" >Register as</label>
 	    <select class="form-control form-control-lg" id="role" name="role">
-	    	<option value="user">User</option>
-	    	<option value="reviewer">Reviewer</option>
+	    	<option value="USER">User</option>
+	    	<option value="REVIEWER">Reviewer</option>
 	    </select>
 	  </div>
 	  
