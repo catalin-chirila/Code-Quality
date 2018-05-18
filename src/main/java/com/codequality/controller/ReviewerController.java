@@ -26,31 +26,41 @@ public class ReviewerController {
 	@Autowired
     private ReviewRequestImpl reviewRequestImpl;
 	
+	@PreAuthorize("hasAuthority('REVIEWER')")
+	@RequestMapping(value = "/reviewer/home", method = RequestMethod.GET)
+    public String getHomePage() {
+        return "/reviewer/home";
+    }
+	
+	@PreAuthorize("hasAuthority('REVIEWER')")
 	@RequestMapping(value = {"/reviewer/request/open/{id}"}, method = RequestMethod.GET)
     public String getIndividualReviewRequest(@PathVariable(value = "id") Long requestId, Model model, Principal principal) {
 		model.addAttribute("individualRequest", reviewRequestImpl.findReviewRequestById(requestId));
         return "/reviewer/requests/view-open-request";
     }
 	
+	@PreAuthorize("hasAuthority('REVIEWER')")
 	@RequestMapping(value = {"/reviewer/request/closed/{id}"}, method = RequestMethod.GET)
     public String getSolvedIndividualReviewRequest(@PathVariable(value = "id") Long requestId, Model model, Principal principal) {
 		model.addAttribute("individualRequest", reviewRequestImpl.findReviewRequestById(requestId));
         return "/reviewer/requests/view-closed-request";
     }
 
-//	@PreAuthorize("hasAuthority('REVIEWER')")
+	@PreAuthorize("hasAuthority('REVIEWER')")
 	@RequestMapping(value = {"/reviewer/requests/open/all"}, method = RequestMethod.GET)
     public String getClosedReviewRequests(Model model) {
     	model.addAttribute("requests", reviewRequestImpl.getAllOpenReviewRequests());
         return "/reviewer/requests/view-all-open-requests";
     }
 	
+	@PreAuthorize("hasAuthority('REVIEWER')")
 	@RequestMapping(value = {"/reviewer/requests/closed/all"}, method = RequestMethod.GET)
     public String getClosedReviewRequests(Model model, Principal principal) {
     	model.addAttribute("requests", userServiceImpl.getClosedReviewRequestsByUsername(principal.getName()));
         return "/reviewer/requests/view-all-closed-requests";
     }
 	
+	@PreAuthorize("hasAuthority('REVIEWER')")
 	@RequestMapping(value = {"/update-review-request/{id}"}, method = RequestMethod.POST)
     public String createReviewRequest(@PathVariable(value = "id") Long requestId, @ModelAttribute("individualRequest") ReviewRequest updateData, BindingResult result) {
 		reviewRequestImpl.updateReviewRequest(updateData, updateData.getId());

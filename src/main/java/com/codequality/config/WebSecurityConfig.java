@@ -22,6 +22,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
    
     @Autowired
     private UserDetailsService userDetailsService;
+    
+    @Autowired
+    private SimpleAuthenticationSuccessHandler successHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -34,10 +37,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers(staticContent).permitAll()
         .antMatchers("/resources/**").permitAll()
         .antMatchers("/register").permitAll()
+        .antMatchers("/create/user").permitAll()
         .antMatchers("/user/home").hasAuthority("USER")
         .anyRequest().authenticated()
         .and()
         .formLogin()
+        .successHandler(successHandler)
         .loginPage("/login")
         .usernameParameter("username")
         .permitAll()
