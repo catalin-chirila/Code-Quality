@@ -51,10 +51,24 @@
 
 	<div class="row justify-content-center">
 		<c:forEach items="${requests}" var="request">
-			<a class="col-md-5 col-sm-12 requestBox requestLink" id="linkRequestBox" href="/reviewer/request/${request.id}">			
-			      <span class="cardTitle">${request.title} (<span id="needReview">Need Review</span>)</span>				
-			</a>	
+			
 		</c:forEach>
+		
+		
+		<c:choose>
+			<c:when test="${empty requests}">	
+				<div class="col-md-6 col-sm-12">
+           			<h2 id="error-message">There aren't any open requests yet..</h2>
+      			</div>		    										
+			</c:when>    
+			    <c:otherwise>	
+					<c:forEach items="${requests}" var="request">					
+						<a class="col-md-5 col-sm-12 requestBox requestLink" id="linkRequestBox" href="/reviewer/request/${request.id}">			
+			     			 <span class="cardTitle">${request.title} (<span id="needReview">Need Review</span>)</span>				
+						</a>		
+					</c:forEach>	
+			    </c:otherwise>
+		</c:choose>
 	</div>
 </div>
 

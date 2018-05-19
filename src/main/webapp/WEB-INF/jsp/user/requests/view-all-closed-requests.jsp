@@ -52,9 +52,17 @@
     </div>
 
 	<div class="row justify-content-center h-100">
-		<c:forEach items="${requests}" var="request">
-			<c:choose>
-			    <c:when test="${request.isBroken==true}">			    					
+	
+		<c:choose>
+			<c:when test="${empty requests}">	
+				<div class="col-md-6 col-sm-12">
+           			<h2 id="error-message">There aren't any closed requests yet..</h2>
+      			</div>		    										
+			</c:when>    
+			    <c:otherwise>	
+					<c:forEach items="${requests}" var="request">
+					<c:choose>
+			    		<c:when test="${request.isBroken==true}">			    					
 					<a class="col-md-5 col-sm-12 requestBox requestLink" id="linkRequestBox" href="/user/request/closed/${request.id}">			
 			      		<span class="cardTitle">${request.title} (<span id="broken">Broken</span>)</span>				
 					</a>						
@@ -66,6 +74,10 @@
 			    </c:otherwise>
 			</c:choose>
 		</c:forEach>
+			    </c:otherwise>
+		</c:choose>
+		
+		
 	</div>
 </div>
 

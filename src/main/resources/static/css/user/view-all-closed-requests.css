@@ -107,3 +107,8 @@ body {
 	padding-bottom: 1%;
 	
 }
+
+#error-message {
+	margin-top: 35%;
+	text-align: center;
+}
