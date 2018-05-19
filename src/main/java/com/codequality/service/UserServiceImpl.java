@@ -40,7 +40,39 @@ public class UserServiceImpl implements UserService {
             user.setRoles(roles);      
             userRepository.save(user);
     	}  	
+    }
+    
+    public void update(User updateUser, String username) {
+    	
+    	User currentUser = findByUsername(username);
 
+    	if (!updateUser.getUsername().isEmpty()) {
+    		currentUser.setUsername(updateUser.getUsername());
+    	}
+    	
+    	if (!updateUser.getEmail().isEmpty()) {
+    		currentUser.setEmail(updateUser.getEmail());
+    	}
+    	
+    	if (!updateUser.getFirstName().isEmpty()) {
+    		currentUser.setFirstName(updateUser.getFirstName());
+    	}
+    	
+    	if (!updateUser.getPasswordHash().isEmpty()) {
+    		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String hashedPassword = passwordEncoder.encode(updateUser.getPasswordHash());
+    		currentUser.setPasswordHash(hashedPassword);
+    	}
+    	
+    	if (!updateUser.getLastName().isEmpty()) {
+    		currentUser.setLastName(updateUser.getLastName());
+    	}
+    	
+    	if (!updateUser.getBio().isEmpty()) {
+    		currentUser.setBio(updateUser.getBio());
+    	}
+    	
+    	userRepository.save(currentUser);	
     }
 
     public User findByUsername(String username) {

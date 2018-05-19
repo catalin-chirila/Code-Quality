@@ -95,5 +95,17 @@ public class UserController {
         return "redirect:/login";
     } 
     
+    @RequestMapping(value = {"/user/profile/edit"}, method = RequestMethod.GET)
+    public String getUserProfile(Model model, Principal principal) {
+    	model.addAttribute("currentUser", userServiceImpl.findByUsername(principal.getName()));
+    	model.addAttribute("updateUser", new User());
+        return "/user/profile";
+    }
+    
+    @RequestMapping(value = {"/profile/edit"}, method = RequestMethod.POST)
+    public String editProfile(@ModelAttribute("updateUser") User updateData, Principal principal) {
+    	userServiceImpl.update(updateData, principal.getName());
+        return "redirect:/user/profile/edit";
+    }
     
 }

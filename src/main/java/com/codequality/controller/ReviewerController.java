@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.codequality.entity.ReviewRequest;
+import com.codequality.entity.User;
 import com.codequality.service.ReviewRequestImpl;
 import com.codequality.service.UserServiceImpl;
 
@@ -57,5 +58,13 @@ public class ReviewerController {
 		reviewRequestImpl.updateReviewRequest(updateData, updateData.getId());
         return "redirect:/reviewer/requests/view-all-open-requests";
     }
+	
+	@RequestMapping(value = {"/reviewer/profile/edit"}, method = RequestMethod.GET)
+    public String getUserProfile(Model model, Principal principal) {
+    	model.addAttribute("currentUser", userServiceImpl.findByUsername(principal.getName()));
+    	model.addAttribute("updateUser", new User());
+        return "/reviewer/profile";
+    }
+    
 }
 
