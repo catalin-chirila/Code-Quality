@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Individual Review Request</title>
+	<title>Closed Review Request</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
 	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
@@ -27,7 +27,7 @@
 	<div class="collapse navbar-collapse " id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="nav-link underline" href="/user/home">&lt;Go Back</a>
+				<a class="nav-link underline" href="/reviewer/requests/closed/all">&lt;Go Back</a>
 			</li>
 			
 		</ul>

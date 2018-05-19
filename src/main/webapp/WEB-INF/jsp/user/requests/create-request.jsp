@@ -9,8 +9,8 @@
 <head>
 	<title>Create Review Request</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
-	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet"> -->
 	<link rel="stylesheet" href="${contextPath}/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${contextPath}/css/user/create-request.css">
 </head>
@@ -28,6 +28,9 @@
 		<ul class="navbar-nav mx-auto">
 			<li class="nav-item">
 				<a class="nav-link underline" href="/user/home">Home</a>
+			</li>			
+			<li class="nav-item">
+				<a class="nav-link active" href="#">Create Review Request</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link underline" href="/user/requests/open/all">Check Open Requests</a>
@@ -59,7 +62,7 @@
 	    <form:label for="repositoryLink" path="repositoryLink">Repository Link</form:label>
 	    <form:input type="text" class="form-control form-control-lg" id="repositoryLink" path="repositoryLink" placeholder="https://github.com/user/repositoryname" name="repositoryLink"></form:input>
 	  </div>
-	  <form:button type="submit" class="btn btn-secondary btn-lg btn-block">Submit</form:button>
+	  <form:button type="submit" class="btn btn-success btn-lg btn-block">Create Review Request</form:button>
 	</form:form>
 </div>
 

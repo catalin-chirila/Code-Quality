@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Home</title>
+	<title>Open Review Requests</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
 	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
@@ -27,9 +27,12 @@
 		<ul class="navbar-nav mx-auto">
 			<li class="nav-item">
 				<a class="nav-link underline" href="/user/home">Home</a>
+			</li>			
+			<li class="nav-item">
+				<a class="nav-link underline" href="/user/requests/create">Create Review Request</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link underline" href="/user/requests/create">Add Review Request</a>
+				<a class="nav-link active" href="#">Check Open Requests</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link underline" href="/user/requests/closed/all">Check Closed Requests</a>

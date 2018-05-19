@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Home | Open Review Requests</title>
+	<title>Open Review Requests</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
 	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
@@ -26,17 +26,19 @@
 	<div class="collapse navbar-collapse " id="navbarSupportedContent">
 		<ul class="navbar-nav mx-auto">
 			<li class="nav-item">
-				<a class="nav-link underline" href="/user/requests/closed">Check Closed Requests</a>
-			</li>
-
+				<a class="nav-link underline" href="/reviewer/home">Home</a>
+			</li>			
 			<li class="nav-item">
-				<a class="nav-link underline" href="/profile/edit">Edit Profile</a>
+				<a class="nav-link active" href="#">Check Open Requests</a>
 			</li>
-
 			<li class="nav-item">
-			<c:if test="${pageContext.request.userPrincipal.name != null}">
-				<a class="nav-link underline" href="/logout">Log Out</a>
-			</c:if>
+				<a class="nav-link underline" href="/reviewer/requests/closed/all">Check Closed Requests</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link underline" href="/reviewer/profile/edit">Edit Profile</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link underline" href="/logout">Log Out</a>		
 			</li>
 		</ul>
 	</div>

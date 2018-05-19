@@ -19,13 +19,12 @@
 <div class="container">
 	<div class="row justify-content-center align-items-center">
 		<div class="col-md-6 col-sm-12">
-			<!-- <h2 id="pageTitle">Welcome.</h2> -->
 			<h2 id="pageTitle">Choose an action</h2>
 		</div>
 	</div>
 	<div class="row justify-content-center align-items-center menu-buttons">
 		<div class="col-md-6 col-sm-12">
-			<a href="/user/requests/create" class="btn btn-success btn-lg btn-block menu">Create a Review Request</a>
+			<a href="/user/requests/create" class="btn btn-success btn-lg btn-block menu">Create Review Request</a>
 			<a href="/user/requests/open/all" class="btn btn-success btn-lg btn-block menu">Check Open Requests</a>
 			<a href="/user/requests/closed/all" class="btn btn-success btn-lg btn-block menu">Check Closed Requests</a>
 			<a href="/user/profile/edit" class="btn btn-success btn-lg btn-block menu">Edit Profile</a>
