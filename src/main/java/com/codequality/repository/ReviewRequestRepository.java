@@ -10,5 +10,6 @@ import com.codequality.entity.ReviewRequest;
 @Repository
 public interface ReviewRequestRepository extends JpaRepository <ReviewRequest, Long> {
 	ReviewRequest findReviewRequestById(Long id);
+	ReviewRequest findByTitle(String title);
 	List<ReviewRequest> findAllByOpen(Boolean open);
 }

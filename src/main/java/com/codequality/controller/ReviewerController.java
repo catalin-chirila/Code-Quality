@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.codequality.entity.ReviewRequest;
 import com.codequality.entity.User;
-import com.codequality.service.ReviewRequestImpl;
+import com.codequality.service.ReviewRequestServiceImpl;
 import com.codequality.service.UserServiceImpl;
 
 @Controller
@@ -22,7 +22,7 @@ public class ReviewerController {
     private UserServiceImpl userServiceImpl;
 	
 	@Autowired
-    private ReviewRequestImpl reviewRequestImpl;
+    private ReviewRequestServiceImpl reviewRequestServiceImpl;
 	
 	@RequestMapping(value = "/reviewer/home", method = RequestMethod.GET)
     public String getHomePage() {
@@ -31,19 +31,19 @@ public class ReviewerController {
 	
 	@RequestMapping(value = {"/reviewer/request/open/{id}"}, method = RequestMethod.GET)
     public String getIndividualReviewRequest(@PathVariable(value = "id") Long requestId, Model model, Principal principal) {
-		model.addAttribute("individualRequest", reviewRequestImpl.findReviewRequestById(requestId));
+		model.addAttribute("individualRequest", reviewRequestServiceImpl.findReviewRequestById(requestId));
         return "/reviewer/requests/view-open-request";
     }
 	
 	@RequestMapping(value = {"/reviewer/request/closed/{id}"}, method = RequestMethod.GET)
     public String getSolvedIndividualReviewRequest(@PathVariable(value = "id") Long requestId, Model model, Principal principal) {
-		model.addAttribute("individualRequest", reviewRequestImpl.findReviewRequestById(requestId));
+		model.addAttribute("individualRequest", reviewRequestServiceImpl.findReviewRequestById(requestId));
         return "/reviewer/requests/view-closed-request";
     }
 
 	@RequestMapping(value = {"/reviewer/requests/open/all"}, method = RequestMethod.GET)
     public String getClosedReviewRequests(Model model) {
-    	model.addAttribute("requests", reviewRequestImpl.getAllOpenReviewRequests());
+    	model.addAttribute("requests", reviewRequestServiceImpl.getAllOpenReviewRequests());
         return "/reviewer/requests/view-all-open-requests";
     }
 	
@@ -55,7 +55,7 @@ public class ReviewerController {
 	
 	@RequestMapping(value = {"/update-review-request/{id}"}, method = RequestMethod.POST)
     public String createReviewRequest(@PathVariable(value = "id") Long requestId, @ModelAttribute("individualRequest") ReviewRequest updateData, BindingResult result) {
-		reviewRequestImpl.updateReviewRequest(updateData, updateData.getId());
+		reviewRequestServiceImpl.updateReviewRequest(updateData, updateData.getId());
         return "redirect:/reviewer/requests/view-all-open-requests";
     }
 	

@@ -9,8 +9,6 @@
 <head>
 	<title>Create Review Request</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
-	<!-- <link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
-	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet"> -->
 	<link rel="stylesheet" href="${contextPath}/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${contextPath}/css/user/create-request.css">
 </head>
@@ -49,18 +47,21 @@
 </nav>
 
 <div class="row justify-content-center align-items-center">
-	<form:form class="col-md-6 col-sm-12" action="/create/request" method="PUT" modelAttribute="reviewRequest">
+	<form:form class="col-md-6 col-sm-12" action="/create/request" method="POST" modelAttribute="reviewRequest">
 	  <div class="form-group">
 	    <form:label for="title" path="title">Title</form:label>
 	    <form:input type="text" class="form-control form-control-lg" id="title" path="title" placeholder="Java Sorting Algorithm" name="title"></form:input>
+	    <form:errors path="title" cssClass="error" />
 	  </div>
 	  <div class="form-group">
 	    <form:label for="description" path="description">Description</form:label>
 	    <form:textarea class="form-control form-control-lg" id="description" path="description" placeholder="Description.." rows="3" name="description"></form:textarea>
+	    <form:errors path="description" cssClass="error" />
 	  </div>
 	  <div class="form-group">
 	    <form:label for="repositoryLink" path="repositoryLink">Repository Link</form:label>
 	    <form:input type="text" class="form-control form-control-lg" id="repositoryLink" path="repositoryLink" placeholder="https://github.com/user/repositoryname" name="repositoryLink"></form:input>
+	    <form:errors path="repositoryLink" cssClass="error" />
 	  </div>
 	  <form:button type="submit" class="btn btn-success btn-lg btn-block">Create Review Request</form:button>
 	</form:form>

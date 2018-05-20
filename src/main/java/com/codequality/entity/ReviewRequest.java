@@ -1,6 +1,7 @@
 package com.codequality.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "review_request")
@@ -11,9 +12,11 @@ public class ReviewRequest {
     @Column(name = "id")
     private Long id;
     
+    @Size(min = 1, max = 40, message = "Please enter a title.")
     @Column(name = "title")
     private String title;
     
+    @Size(min = 1, max = 500, message = "Please enter a description.")
     @Column(name = "description")
     private String description;
     
@@ -23,9 +26,11 @@ public class ReviewRequest {
     @Column(name = "is_broken")
     private Boolean isBroken;
     
+    @Size(min = 1, max = 500, message = "Please enter some feedback.")
     @Column(name = "reviewer_feedback")
     private String reviewerFeedback;
     
+    @Size(min = 1, max = 255, message = "Please enter the repository link.")
     @Column(name = "repository_link")
     private String repositoryLink;
     

@@ -79,6 +79,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username);
     }
     
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+    
     public List<ReviewRequest> getOpenReviewRequestsByUsername(String username) {
     	List<ReviewRequest> requests = userRepository.findByUsername(username).getReviewRequests().stream().collect(Collectors.toList());
     	List<ReviewRequest> openRequests = new ArrayList<>();
@@ -101,5 +105,19 @@ public class UserServiceImpl implements UserService {
     		}
     	}
     	return closedRequests;
+    }
+    
+    public boolean isUsernameUnique(String username) {
+    	if (findByUsername(username) != null) {
+    		return false;
+    	}
+    	return true;
+    }
+    
+    public boolean isEmailUnique(String email) {
+    	if (findByEmail(email) != null) {
+    		return false;
+    	}
+    	return true;
     }
 }
