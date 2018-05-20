@@ -44,6 +44,11 @@ public class ReviewRequestServiceImpl {
 	    	return allOpenRequests;
 	 }
 	 
+	 public List<ReviewRequest> getAllClosedReviewRequests() {
+	    	List<ReviewRequest> allOpenRequests = reviewRequestRepository.findAllByOpen(false);	  
+	    	return allOpenRequests;
+	 }
+	 
 	 public boolean isReviewRequestUnique(String title) {
 		 if (findByTitle(title) != null) {
 	    		return false;

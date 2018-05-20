@@ -1,5 +1,4 @@
 body {
-    /*font-family: 'Oswald', 'Lato', serif;*/
     font-weight: 300;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
@@ -9,29 +8,14 @@ body {
     overflow-x: hidden;
 }
 
-.navbar-nav {
-    margin-top: 10px;
-}
-
-.navbar-nav > li {
-    font-family: 'Roboto' , serif;
-    font-size: 20px;
-    font-weight: 400;
-    letter-spacing: 1px;
-}
-
-.dropdown-menu a:active {
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-.underline:hover{
-    text-decoration: underline;
-}
-
 .row {
     margin-top: 15%;
 }
 
 label {
 	font-size: 2em;
+}
+
+#error {
+	color: red;
 }

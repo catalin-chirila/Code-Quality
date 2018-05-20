@@ -33,15 +33,13 @@ body {
     margin-top: 150px;
 }
 
-#brasov {
+#pageTitle {
     font-weight: bold;
-    font-size: 5em;
+    font-size: 6em;
     text-align: center;
-    margin-bottom: 9%;
-    /* margin-top: -4%; */
-    /* color: #ff6369; */
-    /* letter-spacing: 20px; */
-    list-style-type: none;
+    margin-bottom: 14%;
+    margin-top: -2%;
+    color: #28a745;
 }
 
 .row {
@@ -50,7 +48,7 @@ body {
 
 .cardTitle {
     /* color: #126a76; */
-    font-size: 1.8em;
+    font-size: 1.5em;
     font-weight: 500;
     font-family: 'Oswald', 'Lato', serif;
 }

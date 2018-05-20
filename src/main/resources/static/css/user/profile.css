@@ -4,7 +4,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #444;
-    background-image: url("../assets/img/mirrored-squares.png");
     overflow-x: hidden;
 }
 

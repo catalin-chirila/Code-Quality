@@ -22,9 +22,6 @@ import com.codequality.service.UserServiceImpl;
 @Controller
 public class UserController {
     
-    /*@Autowired
-    private UserService userService;  */ 
-    
     @Autowired
     private UserServiceImpl userServiceImpl;
     

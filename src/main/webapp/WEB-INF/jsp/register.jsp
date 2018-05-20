@@ -1,4 +1,3 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
@@ -7,10 +6,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
 	<title>Sign Up</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
-	<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 	<link rel="stylesheet" href="${contextPath}/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${contextPath}/css/register.css">
 </head>
@@ -37,16 +36,17 @@
 	<form:form class="col-md-6 col-sm-12" action="/create/user" method="POST" modelAttribute="user">
 	  <div class="form-group">
 	    <form:label for="username" path="username">Username</form:label>
-	    <form:input type="text" class="form-control form-control-lg" id="username" path="username" placeholder="Enter username.." name="username" required="required" minlength="5" maxlength="20"></form:input>
+	    <form:input type="text" class="form-control form-control-lg" id="username" path="username" placeholder="Enter username.." name="username" required="required" minlength="4" maxlength="20"></form:input>
 	    <form:errors path="username" cssClass="error" />
 	  </div>
 	  <div class="form-group">
 	    <form:label for="email" path="email">Email</form:label>
 	    <form:input type="email" class="form-control form-control-lg" id="email" path="email" placeholder="Enter email.." name="mail" required="required"></form:input>
+	    <form:errors path="email" cssClass="error"/>
 	  </div>	  
 	  
 	  <div class="form-group">
-	    <form:label for="passwordHash" path="passwordHash">Password</form:label>
+	  	<form:label for="passwordHash" path="passwordHash">Password</form:label>
 	    <form:input type="password" class="form-control form-control-lg" id="passwordHash" path="passwordHash" placeholder="Enter password.." name="passwordHash" required="required" minlength="7" maxlength="30"></form:input>
 	  </div>
 	  
@@ -61,7 +61,6 @@
 	  <form:button type="submit" class="btn btn-success btn-lg btn-block">Register</form:button>
 	</form:form>
 </div>
-
 
 <script type="text/javascript" src="${contextPath}/plugins/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="${contextPath}/plugins/popper.min.js"></script>

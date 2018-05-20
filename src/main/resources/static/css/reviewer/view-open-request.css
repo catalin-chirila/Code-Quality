@@ -1,5 +1,4 @@
 body {
-    /* font-family: 'Oswald', 'Lato', serif; */
     font-weight: 300;
     font-size: 10px;
     -webkit-font-smoothing: antialiased;
@@ -9,15 +8,10 @@ body {
     overflow-x: hidden;
 }
 
-.navbar-nav {
-    /* margin-top: 10px; */
-}
-
 .navbar-nav > li {
     font-family: 'Roboto' , serif;
     font-size: 20px;
     font-weight: 400;
-    /* letter-spacing: 1px; */
 }
 
 .dropdown-menu a:active {
@@ -33,13 +27,12 @@ body {
     margin-top: 150px;
 }
 
-#brasov {
+#pageTitle {
     font-weight: bold;
     font-size: 5em;
     text-align: center;
     margin-bottom: 9%;
   	margin-top: -10%;
-    /* color: #ff6369; */
     list-style-type: none;
 }
 
@@ -48,18 +41,14 @@ body {
 }
 
 .cardTitle {
-    /* color: #126a76; */
     font-size: 1.8em;
     font-weight: 500;
     font-family: 'Oswald', 'Lato', serif;
 }
 
-
-
 .requestBox {
     font-size: 2.3em;
     font-weight: 400;
-    /* font-family: 'Lato', serif;  */
     color: rgba(0, 0, 0,0.7);
     background: none;
     -webkit-box-shadow: 1px 6px 19px 0px rgba(0,0,0,0.19);
@@ -68,40 +57,8 @@ body {
 	margin: 4% 2% 0 2%;
 }
 
-.requestLink {
-	color: rgba(0, 0, 0,0.7);
-}
-
-.requestLink:hover {
-    text-decoration: none;
-    color: rgba(0, 0, 0,0.7);
-}
-
-#upButton {
-    display: none;
-    position: fixed;
-    bottom: 30px;
-    right: 40px;
-    z-index: 99;
-    font-size: 9em;
-    background: none;
-    color: rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-}
-
-#upButton:hover {
-    color: rgba(0, 0, 0, 0.5);
-}
-
 label {
 	font-size: 2em;
-}
-
-.requestBox {
-	/* border: 1px solid #ced4da;
-	background-color: white;
-	border-radius: .3rem;
-	box-shadow: none; */
 }
 
 #feedback {
@@ -113,9 +70,5 @@ label {
 }
 
 #needReview{
-	color: #007bff;
-}
-
-.error {
-	color: red;
+	color: #0069dd;
 }

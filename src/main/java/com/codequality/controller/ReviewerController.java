@@ -54,7 +54,7 @@ public class ReviewerController {
 	
 	@RequestMapping(value = {"/reviewer/requests/closed/all"}, method = RequestMethod.GET)
     public String getClosedReviewRequests(Model model, Principal principal) {
-    	model.addAttribute("requests", userServiceImpl.getClosedReviewRequestsByUsername(principal.getName()));
+    	model.addAttribute("requests", reviewRequestServiceImpl.getAllClosedReviewRequests());
         return "/reviewer/requests/view-all-closed-requests";
     }
 	
@@ -62,7 +62,7 @@ public class ReviewerController {
     public String createReviewRequest(@PathVariable(value = "id") Long requestId, @ModelAttribute("individualRequest") ReviewRequest updateData) {
 		
 		reviewRequestServiceImpl.updateReviewRequest(updateData, updateData.getId());
-        return "redirect:/reviewer/requests/view-all-open-requests";
+        return "redirect:/reviewer/requests/open/all";
     }
 	
 	@RequestMapping(value = {"/reviewer/profile/edit"}, method = RequestMethod.GET)
