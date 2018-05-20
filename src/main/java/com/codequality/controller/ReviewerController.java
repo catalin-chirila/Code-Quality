@@ -1,6 +1,9 @@
 package com.codequality.controller;
 
 import java.security.Principal;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.codequality.entity.ReviewRequest;
 import com.codequality.entity.User;
 import com.codequality.service.ReviewRequestServiceImpl;
@@ -53,8 +58,9 @@ public class ReviewerController {
         return "/reviewer/requests/view-all-closed-requests";
     }
 	
-	@RequestMapping(value = {"/update-review-request/{id}"}, method = RequestMethod.POST)
-    public String createReviewRequest(@PathVariable(value = "id") Long requestId, @ModelAttribute("individualRequest") ReviewRequest updateData, BindingResult result) {
+	@RequestMapping(value = {"/update/request/{id}"}, method = RequestMethod.POST)
+    public String createReviewRequest(@PathVariable(value = "id") Long requestId, @ModelAttribute("individualRequest") ReviewRequest updateData) {
+		
 		reviewRequestServiceImpl.updateReviewRequest(updateData, updateData.getId());
         return "redirect:/reviewer/requests/view-all-open-requests";
     }
@@ -64,6 +70,23 @@ public class ReviewerController {
     	model.addAttribute("currentUser", userServiceImpl.findByUsername(principal.getName()));
     	model.addAttribute("updateUser", new User());
         return "/reviewer/profile";
+    }
+	
+	@RequestMapping(value = {"/reviewer/edit"}, method = RequestMethod.POST)
+    public String editProfile(@Valid @ModelAttribute("updateUser") User updateData, BindingResult bindingResult, Principal principal, Model model) { 
+    	
+    	if (!userServiceImpl.isUsernameUnique(updateData.getUsername())) {
+    		bindingResult.rejectValue("username", "error.username", "An account already exists for this username.");
+    		return "/user/profile";
+    	}
+    	
+    	if (!userServiceImpl.isEmailUnique(updateData.getEmail())) {
+    		bindingResult.rejectValue("email", "error.email", "An account already exists for this email.");
+    		return "/user/profile";
+    	}
+    	
+    	userServiceImpl.update(updateData, principal.getName());
+        return "redirect:/user/profile/edit";
     }
     
 }

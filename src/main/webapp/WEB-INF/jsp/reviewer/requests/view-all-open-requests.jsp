@@ -65,7 +65,7 @@
 			</c:when>    
 			    <c:otherwise>	
 					<c:forEach items="${requests}" var="request">					
-						<a class="col-md-5 col-sm-12 requestBox requestLink" id="linkRequestBox" href="/reviewer/request/${request.id}">			
+						<a class="col-md-5 col-sm-12 requestBox requestLink" id="linkRequestBox" href="/reviewer/request/open/${request.id}">			
 			     			 <span class="cardTitle">${request.title} (<span id="needReview">Need Review</span>)</span>				
 						</a>		
 					</c:forEach>	

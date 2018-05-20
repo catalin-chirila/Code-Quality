@@ -37,19 +37,17 @@
 	<form:form class="col-md-6 col-sm-12" action="/create/user" method="POST" modelAttribute="user">
 	  <div class="form-group">
 	    <form:label for="username" path="username">Username</form:label>
-	    <form:input type="text" class="form-control form-control-lg" id="username" path="username" placeholder="Enter username.." name="username"></form:input>
+	    <form:input type="text" class="form-control form-control-lg" id="username" path="username" placeholder="Enter username.." name="username" required="required" minlength="5" maxlength="20"></form:input>
 	    <form:errors path="username" cssClass="error" />
 	  </div>
 	  <div class="form-group">
 	    <form:label for="email" path="email">Email</form:label>
-	    <form:input type="email" class="form-control form-control-lg" id="email" path="email" placeholder="Enter email.." name="mail"></form:input>
-	    <form:errors path="email" cssClass="error"/>
+	    <form:input type="email" class="form-control form-control-lg" id="email" path="email" placeholder="Enter email.." name="mail" required="required"></form:input>
 	  </div>	  
 	  
 	  <div class="form-group">
 	    <form:label for="passwordHash" path="passwordHash">Password</form:label>
-	    <form:input type="password" class="form-control form-control-lg" id="passwordHash" path="passwordHash" placeholder="Enter password.." name="passwordHash"></form:input>
-	    <form:errors path="passwordHash" cssClass="error"/>
+	    <form:input type="password" class="form-control form-control-lg" id="passwordHash" path="passwordHash" placeholder="Enter password.." name="passwordHash" required="required" minlength="7" maxlength="30"></form:input>
 	  </div>
 	  
 	   <div class="form-group">
@@ -60,7 +58,6 @@
 	    </select>
 	  </div>
 	  
-
 	  <form:button type="submit" class="btn btn-success btn-lg btn-block">Register</form:button>
 	</form:form>
 </div>

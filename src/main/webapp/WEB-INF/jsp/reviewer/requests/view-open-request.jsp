@@ -56,14 +56,14 @@
 
 	<div class="row justify-content-center align-items-center" id="feedback">
 		<div class="col-md-7 col-sm-12 requestBox">
-		<form:form action="/update-review-request/${individualRequest.id}" method="POST" modelAttribute="individualRequest">
+		<form:form action="/update/request/${individualRequest.id}" method="POST" modelAttribute="individualRequest">
 		  <div class="form-group">
 		    <form:label for="reviewerFeedback" path="reviewerFeedback">Feedback</form:label>
-		    <form:textarea class="form-control form-control-lg" id="reviewerFeedback" path="reviewerFeedback" placeholder="Feedback.." rows="3" name="description"></form:textarea>
+		    <form:textarea class="form-control form-control-lg" id="reviewerFeedback" path="reviewerFeedback" placeholder="Feedback.." rows="3" name="description" required="required"></form:textarea>
+		    <%-- <form:errors path="reviewerFeedback" cssClass="error" /> --%>
 		  </div>
 		
 		  <form:button type="submit" class="btn btn-success btn-lg btn-block">Submit Feedback</form:button>
-		  <%-- <form:button type="submit" class="btn btn-danger btn-lg btn-block">Mark Request As Broken</form:button> --%>
 		  <form:button id="isBroken" type="submit" class="btn btn-danger btn-lg btn-block" name="isBroken" path="isBroken" value="true">Mark Request As Broken</form:button>
 		</form:form>
 		</div>

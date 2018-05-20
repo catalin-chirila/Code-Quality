@@ -47,10 +47,11 @@
 </nav>
 
 <div class="row justify-content-center align-items-center">
-	<form:form class="col-md-6 col-sm-12" action="/profile/edit" method="POST" modelAttribute="updateUser">
+	<form:form class="col-md-6 col-sm-12" action="/user/edit" method="POST" modelAttribute="updateUser">
 	  <div class="form-group">
 	    <form:label for="username" path="username">Username</form:label>
-	    <form:input type="text" class="form-control form-control-lg" id="username" path="username" placeholder="${currentUser.username}" name="username"></form:input>
+	    <form:input type="text" class="form-control form-control-lg" id="username" path="username" placeholder="${currentUser.username}" name="username" minlength="5" maxlength="20"></form:input>
+	    <form:errors path="username" cssClass="error" />
 	  </div>
 	  
 	  <c:choose>
@@ -58,19 +59,21 @@
         	<div class="form-group">
 	    		<form:label for="email" path="email">Email</form:label>
 	   			<form:input type="text" class="form-control form-control-lg" id="email" path="email" placeholder="Enter your email.." name="email"></form:input>
+	   			<form:errors path="email" cssClass="error" />
 	  		</div>
     	</c:when>
     	<c:otherwise>
         	<div class="form-group">
 	    		<form:label for="email" path="email">Email</form:label>
 	   			<form:input type="email" class="form-control form-control-lg" id="email" path="email" placeholder="${currentUser.email}" name="email"></form:input>
+	   			<form:errors path="email" cssClass="error" />
 	  		</div>
       	</c:otherwise>
       </c:choose>
       
       <div class="form-group">
 	    	<form:label for="passwordHash" path="passwordHash">Password</form:label>
-	   		<form:input type="password" class="form-control form-control-lg" id="passwordHash" path="passwordHash" placeholder="Enter a new password.." name="passwordHash"></form:input>
+	   		<form:input type="password" class="form-control form-control-lg" id="passwordHash" path="passwordHash" placeholder="Enter a new password.." name="passwordHash" minlength="7" maxlength="30"></form:input>
 	  	</div>
       
       <c:choose>

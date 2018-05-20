@@ -115,3 +115,7 @@ label {
 #needReview{
 	color: #007bff;
 }
+
+.error {
+	color: red;
+}

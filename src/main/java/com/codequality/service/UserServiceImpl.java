@@ -7,7 +7,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import com.codequality.entity.ReviewRequest;
@@ -45,34 +51,42 @@ public class UserServiceImpl implements UserService {
     public void update(User updateUser, String username) {
     	
     	User currentUser = findByUsername(username);
-
-    	if (!updateUser.getUsername().isEmpty()) {
+    	
+    	
+    	if (updateUser.getUsername() != null && !updateUser.getUsername().isEmpty()) {
     		currentUser.setUsername(updateUser.getUsername());
+        	Set<GrantedAuthority> grantedAuthorities = new HashSet();
+        	for (Role role : currentUser.getRoles()){
+        		grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
+        	}
+        	Authentication authentication = new PreAuthenticatedAuthenticationToken(currentUser.getUsername(), currentUser.getPasswordHash(), grantedAuthorities);
+        	SecurityContextHolder.getContext().setAuthentication(authentication);
     	}
     	
-    	if (!updateUser.getEmail().isEmpty()) {
+    	if (updateUser.getEmail() != null && !updateUser.getEmail().isEmpty()) {
     		currentUser.setEmail(updateUser.getEmail());
     	}
     	
-    	if (!updateUser.getFirstName().isEmpty()) {
+    	if (updateUser.getFirstName() != null && !updateUser.getFirstName().isEmpty()) {
     		currentUser.setFirstName(updateUser.getFirstName());
     	}
     	
-    	if (!updateUser.getPasswordHash().isEmpty()) {
+    	if (updateUser.getPasswordHash() != null && !updateUser.getPasswordHash().isEmpty()) {
     		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String hashedPassword = passwordEncoder.encode(updateUser.getPasswordHash());
     		currentUser.setPasswordHash(hashedPassword);
     	}
     	
-    	if (!updateUser.getLastName().isEmpty()) {
+    	if (updateUser.getLastName() != null && !updateUser.getLastName().isEmpty()) {
     		currentUser.setLastName(updateUser.getLastName());
     	}
     	
-    	if (!updateUser.getBio().isEmpty()) {
+    	if (updateUser.getBio() != null && !updateUser.getBio().isEmpty()) {
     		currentUser.setBio(updateUser.getBio());
     	}
     	
     	userRepository.save(currentUser);	
+
     }
 
     public User findByUsername(String username) {

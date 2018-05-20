@@ -101,17 +101,13 @@ public class UserController {
     
     @RequestMapping(value = {"/create/user"}, method = RequestMethod.POST)
     public String createNewUser(@RequestParam String role, @Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
-    	if (bindingResult.hasErrors()) {
-			return "/register";
-		}
-    	
     	if (!userServiceImpl.isUsernameUnique(user.getUsername())) {
-    		bindingResult.rejectValue("username", "error.user", "An account already exists for this username.");
+    		bindingResult.rejectValue("username", "error.username", "An account already exists for this username.");
     		return "/register";
     	}
     	
     	if (!userServiceImpl.isEmailUnique(user.getEmail())) {
-    		bindingResult.rejectValue("email", "error.user", "An account already exists for this email.");
+    		bindingResult.rejectValue("email", "error.email", "An account already exists for this email.");
     		return "/register";
     	}
      	
@@ -126,8 +122,19 @@ public class UserController {
         return "/user/profile";
     }
     
-    @RequestMapping(value = {"/profile/edit"}, method = RequestMethod.POST)
-    public String editProfile(@ModelAttribute("updateUser") User updateData, Principal principal) {
+    @RequestMapping(value = {"/user/edit"}, method = RequestMethod.POST)
+    public String editProfile(@Valid @ModelAttribute("updateUser") User updateData, BindingResult bindingResult, Principal principal, Model model) { 
+    	
+    	if (!userServiceImpl.isUsernameUnique(updateData.getUsername())) {
+    		bindingResult.rejectValue("username", "error.username", "An account already exists for this username.");
+    		return "/user/profile";
+    	}
+    	
+    	if (!userServiceImpl.isEmailUnique(updateData.getEmail())) {
+    		bindingResult.rejectValue("email", "error.email", "An account already exists for this email.");
+    		return "/user/profile";
+    	}
+    	
     	userServiceImpl.update(updateData, principal.getName());
         return "redirect:/user/profile/edit";
     }

@@ -50,18 +50,16 @@
 	<form:form class="col-md-6 col-sm-12" action="/create/request" method="POST" modelAttribute="reviewRequest">
 	  <div class="form-group">
 	    <form:label for="title" path="title">Title</form:label>
-	    <form:input type="text" class="form-control form-control-lg" id="title" path="title" placeholder="Java Sorting Algorithm" name="title"></form:input>
+	    <form:input type="text" class="form-control form-control-lg" id="title" path="title" placeholder="Java Sorting Algorithm" name="title" required="required" minlength="3" maxlength="40"></form:input>
 	    <form:errors path="title" cssClass="error" />
 	  </div>
 	  <div class="form-group">
 	    <form:label for="description" path="description">Description</form:label>
-	    <form:textarea class="form-control form-control-lg" id="description" path="description" placeholder="Description.." rows="3" name="description"></form:textarea>
-	    <form:errors path="description" cssClass="error" />
+	    <form:textarea class="form-control form-control-lg" id="description" path="description" placeholder="Description.." rows="3" name="description" required="required"></form:textarea>
 	  </div>
 	  <div class="form-group">
 	    <form:label for="repositoryLink" path="repositoryLink">Repository Link</form:label>
-	    <form:input type="text" class="form-control form-control-lg" id="repositoryLink" path="repositoryLink" placeholder="https://github.com/user/repositoryname" name="repositoryLink"></form:input>
-	    <form:errors path="repositoryLink" cssClass="error" />
+	    <form:input type="text" class="form-control form-control-lg" id="repositoryLink" path="repositoryLink" placeholder="https://github.com/user/repositoryname" name="repositoryLink" required="required"></form:input>
 	  </div>
 	  <form:button type="submit" class="btn btn-success btn-lg btn-block">Create Review Request</form:button>
 	</form:form>
