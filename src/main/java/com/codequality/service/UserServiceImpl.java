@@ -49,9 +49,7 @@ public class UserServiceImpl implements UserService {
     }
     
     public void update(User updateUser, String username) {
-    	
     	User currentUser = findByUsername(username);
-    	
     	
     	if (updateUser.getUsername() != null && !updateUser.getUsername().isEmpty()) {
     		currentUser.setUsername(updateUser.getUsername());
@@ -86,7 +84,6 @@ public class UserServiceImpl implements UserService {
     	}
     	
     	userRepository.save(currentUser);	
-
     }
 
     public User findByUsername(String username) {

@@ -1,6 +1,7 @@
 package com.codequality.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -12,9 +13,11 @@ public class ReviewRequest {
     @Column(name = "id")
     private Long id;
     
+    @Size(min = 3, max = 40, message = "Please enter between {min} and {max} characters.")
     @Column(name = "title")
     private String title;
     
+    @NotEmpty
     @Column(name = "description")
     private String description;
     
@@ -24,9 +27,11 @@ public class ReviewRequest {
     @Column(name = "is_broken")
     private Boolean isBroken; 
 
+    @Size(min = 1, message = "Please enter between at least {min} characters.")
     @Column(name = "reviewer_feedback")
     private String reviewerFeedback;
     
+    @NotEmpty
     @Column(name = "repository_link")
     private String repositoryLink;
     

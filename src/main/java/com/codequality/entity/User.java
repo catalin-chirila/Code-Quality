@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -17,16 +18,17 @@ public class User {
     @Column(name = "id")
     private Long id;
     
-    /*@Size(min = 5, max = 30, message = "Please enter between {min} and {max} characters.")*/
-    @Column(name = "username")
+    
+    @Size(min = 4, max = 20, message = "Please enter between {min} and {max} characters.")
+    @Column(name = "username", unique=true)
     private String username;
     
-    /*@Email
-    @Size(min = 1, max = 40, message = "Please enter an email.")*/
-    @Column(name = "email")
+    @Email
+    @NotEmpty
+    @Column(name = "email", unique=true)
     private String email;
     
-    /*@Size(min = 6, max = 255, message = "Please enter between {min} and {max} characters.")*/
+    @NotEmpty
     @Column(name = "password_hash")
     private String passwordHash;
     

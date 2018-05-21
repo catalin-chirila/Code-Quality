@@ -48,6 +48,7 @@
 	  <div class="form-group">
 	  	<form:label for="passwordHash" path="passwordHash">Password</form:label>
 	    <form:input type="password" class="form-control form-control-lg" id="passwordHash" path="passwordHash" placeholder="Enter password.." name="passwordHash" required="required" minlength="7" maxlength="30"></form:input>
+	    <form:errors path="passwordHash" cssClass="error" />
 	  </div>
 	  
 	   <div class="form-group">

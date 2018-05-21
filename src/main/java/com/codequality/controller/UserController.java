@@ -98,6 +98,10 @@ public class UserController {
     
     @RequestMapping(value = {"/create/user"}, method = RequestMethod.POST)
     public String createNewUser(@RequestParam String role, @Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+    	if (bindingResult.hasErrors()) {
+    		return "/register";
+    	}
+    	
     	if (!userServiceImpl.isUsernameUnique(user.getUsername())) {
     		bindingResult.rejectValue("username", "error.username", "An account already exists for this username.");
     		return "/register";
@@ -123,12 +127,16 @@ public class UserController {
     public String editProfile(@Valid @ModelAttribute("updateUser") User updateData, BindingResult bindingResult, Principal principal, Model model) { 
     	
     	if (!userServiceImpl.isUsernameUnique(updateData.getUsername())) {
-    		bindingResult.rejectValue("username", "error.username", "An account already exists for this username.");
+    		model.addAttribute("currentUser", userServiceImpl.findByUsername(principal.getName()));
+        	model.addAttribute("updateUser", new User());
+        	model.addAttribute("usernameerror", "An account already exists for that username.");
     		return "/user/profile";
     	}
     	
     	if (!userServiceImpl.isEmailUnique(updateData.getEmail())) {
-    		bindingResult.rejectValue("email", "error.email", "An account already exists for this email.");
+    		model.addAttribute("currentUser", userServiceImpl.findByUsername(principal.getName()));
+        	model.addAttribute("updateUser", new User());
+        	model.addAttribute("emailerror", "An account already exists for that email.");	
     		return "/user/profile";
     	}
     	

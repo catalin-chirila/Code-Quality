@@ -1,6 +1,7 @@
 package com.codequality.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +15,7 @@ public class Role {
     @Column(name="id")
     private Long id;
     
+    @NotEmpty
     @Column(name="name")
     private String name;
     

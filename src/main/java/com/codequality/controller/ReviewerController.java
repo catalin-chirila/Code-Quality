@@ -75,13 +75,17 @@ public class ReviewerController {
 	@RequestMapping(value = {"/reviewer/edit"}, method = RequestMethod.POST)
     public String editProfile(@Valid @ModelAttribute("updateUser") User updateData, BindingResult bindingResult, Principal principal, Model model) { 
     	
-    	if (!userServiceImpl.isUsernameUnique(updateData.getUsername())) {
-    		bindingResult.rejectValue("username", "error.username", "An account already exists for this username.");
+		if (!userServiceImpl.isUsernameUnique(updateData.getUsername())) {
+    		model.addAttribute("currentUser", userServiceImpl.findByUsername(principal.getName()));
+        	model.addAttribute("updateUser", new User());
+        	model.addAttribute("usernameerror", "An account already exists for that username.");
     		return "/user/profile";
     	}
     	
     	if (!userServiceImpl.isEmailUnique(updateData.getEmail())) {
-    		bindingResult.rejectValue("email", "error.email", "An account already exists for this email.");
+    		model.addAttribute("currentUser", userServiceImpl.findByUsername(principal.getName()));
+        	model.addAttribute("updateUser", new User());
+        	model.addAttribute("emailerror", "An account already exists for that email.");	
     		return "/user/profile";
     	}
     	

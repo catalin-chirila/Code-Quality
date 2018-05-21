@@ -92,7 +92,7 @@
             </c:when>
             <c:otherwise>
                 <div class="form-group">
-                    <form:label for="firstName" path="firstName">First Name</form:label>
+                    <form:label for="firstName" path="firstName">Last Name</form:label>
                     <form:input type="text" class="form-control form-control-lg" id="firstName" path="firstName"
                                 placeholder="${currentUser.firstName}" name="firstName"></form:input>
                 </div>

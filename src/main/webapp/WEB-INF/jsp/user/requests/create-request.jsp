@@ -60,12 +60,14 @@
             <form:label for="description" path="description">Description</form:label>
             <form:textarea class="form-control form-control-lg" id="description" path="description"
                            placeholder="This algorithm.." rows="3" name="description" required="required"></form:textarea>
+            <form:errors path="description" cssClass="error"/>
         </div>
         <div class="form-group">
             <form:label for="repositoryLink" path="repositoryLink">Repository Link</form:label>
             <form:input type="text" class="form-control form-control-lg" id="repositoryLink" path="repositoryLink"
                         placeholder="https://github.com/user/repositoryname" name="repositoryLink"
                         required="required"></form:input>
+            <form:errors path="repositoryLink" cssClass="error"/>
         </div>
         <form:button type="submit" class="btn btn-success btn-lg btn-block">Create Review Request</form:button>
     </form:form>

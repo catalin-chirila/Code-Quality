@@ -53,27 +53,19 @@
             <form:label for="username" path="username">Username</form:label>
             <form:input type="text" class="form-control form-control-lg" id="username" path="username"
                         placeholder="${currentUser.username}" name="username" minlength="5" maxlength="20"></form:input>
-            <form:errors path="username" cssClass="error"/>
+           	<c:if test = "${not empty usernameerror}">
+        		<p class="error">${usernameerror}</p>
+     	   	</c:if>
         </div>
 
-        <c:choose>
-            <c:when test="${empty currentUser.email}">
-                <div class="form-group">
-                    <form:label for="email" path="email">Email</form:label>
-                    <form:input type="text" class="form-control form-control-lg" id="email" path="email"
-                                placeholder="Enter your email.." name="email"></form:input>
-                    <form:errors path="email" cssClass="error"/>
-                </div>
-            </c:when>
-            <c:otherwise>
-                <div class="form-group">
-                    <form:label for="email" path="email">Email</form:label>
-                    <form:input type="email" class="form-control form-control-lg" id="email" path="email"
-                                placeholder="${currentUser.email}" name="email"></form:input>
-                    <form:errors path="email" cssClass="error"/>
-                </div>
-            </c:otherwise>
-        </c:choose>
+        <div class="form-group">
+        	<form:label for="email" path="email">Email</form:label>
+        	<form:input type="email" class="form-control form-control-lg" id="email" path="email"
+                        placeholder="${currentUser.email}" name="email"></form:input>
+            <c:if test = "${not empty emailerror}">
+        		<p class="error">${emailerror}</p>
+     	   	</c:if>
+        </div>
 
         <div class="form-group">
             <form:label for="passwordHash" path="passwordHash">Password</form:label>
@@ -102,7 +94,7 @@
         <c:choose>
             <c:when test="${empty currentUser.lastName}">
                 <div class="form-group">
-                    <form:label for="lastName" path="lastName">First Name</form:label>
+                    <form:label for="lastName" path="lastName">Last Name</form:label>
                     <form:input type="text" class="form-control form-control-lg" id="lastName" path="lastName"
                                 placeholder="Enter your last name.." name="lastName"></form:input>
                 </div>
