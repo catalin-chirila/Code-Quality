@@ -1,25 +1,19 @@
 package com.codequality.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.codequality.entity.Role;
 import com.codequality.entity.User;
-
 import com.codequality.repository.UserRepository;
-
 import java.util.HashSet;
 import java.util.Set;
 
-//@Component
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
     @Autowired

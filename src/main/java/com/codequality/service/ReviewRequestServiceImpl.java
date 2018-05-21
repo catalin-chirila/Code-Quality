@@ -9,7 +9,7 @@ import com.codequality.entity.User;
 import com.codequality.repository.ReviewRequestRepository;
 
 @Service
-public class ReviewRequestServiceImpl {
+public class ReviewRequestServiceImpl implements ReviewRequestService {
 	
 	@Autowired
 	private ReviewRequestRepository reviewRequestRepository;
@@ -19,14 +19,6 @@ public class ReviewRequestServiceImpl {
 		reviewRequest.setIsBroken(false);
 		reviewRequest.setUser(user);
 		reviewRequestRepository.save(reviewRequest);
-	}
-	
-	public ReviewRequest findReviewRequestById(Long id) {
-		return reviewRequestRepository.findReviewRequestById(id);
-	}
-	
-	public ReviewRequest findByTitle(String title) {
-		return reviewRequestRepository.findByTitle(title);
 	}
 	
 	public void updateReviewRequest(ReviewRequest updateData, Long requestId) {
@@ -39,21 +31,28 @@ public class ReviewRequestServiceImpl {
 		reviewRequestRepository.save(reviewRequest);
 	}
 	
-	 public List<ReviewRequest> getAllOpenReviewRequests() {
-	    	List<ReviewRequest> allOpenRequests = reviewRequestRepository.findAllByOpen(true);	  
-	    	return allOpenRequests;
-	 }
+	public ReviewRequest findReviewRequestById(Long id) {
+		return reviewRequestRepository.findReviewRequestById(id);
+	}
+	
+	public ReviewRequest findByTitle(String title) {
+		return reviewRequestRepository.findByTitle(title);
+	}
+	
+	public List<ReviewRequest> getAllOpenReviewRequests() {
+		List<ReviewRequest> allOpenRequests = reviewRequestRepository.findAllByOpen(true);	  
+	    return allOpenRequests;
+	}
 	 
-	 public List<ReviewRequest> getAllClosedReviewRequests() {
-	    	List<ReviewRequest> allOpenRequests = reviewRequestRepository.findAllByOpen(false);	  
-	    	return allOpenRequests;
-	 }
+	public List<ReviewRequest> getAllClosedReviewRequests() {
+	   	List<ReviewRequest> allOpenRequests = reviewRequestRepository.findAllByOpen(false);	  
+	   	return allOpenRequests;
+	}
 	 
-	 public boolean isReviewRequestUnique(String title) {
-		 if (findByTitle(title) != null) {
-	    		return false;
-	    	}
-	    	return true;
-	 }
-	 
+	public boolean isReviewRequestUnique(String title) {
+		if (findByTitle(title) != null) {
+	   		return false;
+	   	}
+	   	return true;
+	} 
 }

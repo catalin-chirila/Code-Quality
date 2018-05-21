@@ -1,12 +1,9 @@
 body {
-    /* font-family: 'Oswald', 'Lato', serif; */
     font-weight: 300;
     font-size: 10px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #444;
-    /* background-image: url("../assets/img/mirrored-squares.png"); */
-    overflow-x: hidden;
 }
 
 .navbar-nav {
@@ -47,18 +44,14 @@ body {
 }
 
 .cardTitle {
-    /* color: #126a76; */
     font-size: 1.5em;
     font-weight: 500;
     font-family: 'Oswald', 'Lato', serif;
 }
 
-
-
 .requestBox {
     font-size: 2.3em;
     font-weight: 400;
-    /* font-family: 'Lato', serif;  */
     color: rgba(0, 0, 0,0.7);
     background: none;
     -webkit-box-shadow: 1px 6px 19px 0px rgba(0,0,0,0.19);
@@ -74,22 +67,6 @@ body {
 .requestLink:hover {
     text-decoration: none;
     color: rgba(0, 0, 0,0.7);
-}
-
-#upButton {
-    display: none;
-    position: fixed;
-    bottom: 30px;
-    right: 40px;
-    z-index: 99;
-    font-size: 9em;
-    background: none;
-    color: rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-}
-
-#upButton:hover {
-    color: rgba(0, 0, 0, 0.5);
 }
 
 #solved {
