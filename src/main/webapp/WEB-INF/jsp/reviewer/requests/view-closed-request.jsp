@@ -39,7 +39,7 @@
 <div class="container">
     <div class="row justify-content-center align-items-center">
         <div class="col-md-6 col-sm-12">
-            <h2 id="pageTitle">Individual Review Request</h2>
+            <h2 id="pageTitle">Closed Review Request</h2>
         </div>
     </div>
 

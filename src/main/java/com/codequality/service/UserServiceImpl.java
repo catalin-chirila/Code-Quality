@@ -26,6 +26,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleRepository roleRepository;
 
+    /**
+     * Takes a User model from the client along with the selected role (either "USER" or "REVIEWER",
+     * encrypts the password and saves the user in the database with the matching role.
+     */
     public void save(User user, String role) {
     	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPasswordHash());
@@ -44,6 +48,11 @@ public class UserServiceImpl implements UserService {
     	}  	
     }
     
+    /**
+     * Takes a User model that contains only the data that needs to be updated and the current logged user username.
+     * Based on the current logged user username, it retrieves the current user Object from the database and it will be updated
+     * with any field (from the user model received from the client) that is not null nor empty.
+     */
     public void update(User updateUser, String username) {
     	User currentUser = findByUsername(username);
     	
@@ -82,14 +91,24 @@ public class UserServiceImpl implements UserService {
     	userRepository.save(currentUser);	
     }
 
+    /**
+     * Returns a User model from the database based on the username parameter.
+     */
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
     
+    /**
+     * Returns a User model from the database based on the email parameter.
+     */
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
     
+    /**
+     * Returns a list of open ReviewRequests Objects that are bound to a user model from the database.
+     * The user model is retrieved by it's username.
+     */
     public List<ReviewRequest> getOpenReviewRequestsByUsername(String username) {
     	List<ReviewRequest> requests = userRepository.findByUsername(username).getReviewRequests().stream().collect(Collectors.toList());
     	List<ReviewRequest> openRequests = new ArrayList<>();
@@ -102,6 +121,10 @@ public class UserServiceImpl implements UserService {
     	return openRequests;
     }
     
+    /**
+     * Returns a list of closed ReviewRequests Objects that are bound to a user model from the database.
+     * The user model is retrieved by it's username.
+     */
     public List<ReviewRequest> getClosedReviewRequestsByUsername(String username) {
     	List<ReviewRequest> requests = userRepository.findByUsername(username).getReviewRequests().stream().collect(Collectors.toList());
     	List<ReviewRequest> closedRequests = new ArrayList<>();
@@ -114,6 +137,9 @@ public class UserServiceImpl implements UserService {
     	return closedRequests;
     }
     
+    /**
+     * Checks if a username already exists in the database.
+     */
     public boolean isUsernameUnique(String username) {
     	if (findByUsername(username) != null) {
     		return false;
@@ -121,6 +147,9 @@ public class UserServiceImpl implements UserService {
     	return true;
     }
     
+    /**
+     * Checks if an email already exists in the database.
+     */
     public boolean isEmailUnique(String email) {
     	if (findByEmail(email) != null) {
     		return false;

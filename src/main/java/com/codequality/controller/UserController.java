@@ -1,9 +1,7 @@
 package com.codequality.controller;
 
 import java.security.Principal;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.codequality.entity.ReviewRequest;
 import com.codequality.entity.User;
 import com.codequality.service.ReviewRequestServiceImpl;
-import com.codequality.service.UserService;
 import com.codequality.service.UserServiceImpl;
 
 @Controller
@@ -80,7 +77,9 @@ public class UserController {
 			return "/user/requests/create-request";
 		}
     	
-    	if (!reviewRequestServiceImpl.isReviewRequestUnique(reviewRequest.getTitle())) {
+    	User currentUser = userServiceImpl.findByUsername(principal.getName());
+    	
+    	if (!reviewRequestServiceImpl.isReviewRequestTitleUniqueOnUser(reviewRequest.getTitle(), currentUser.getId())) {
     		bindingResult.rejectValue("title", "error.reviewRequest", "A review request already exists for this title.");
     		return "/user/requests/create-request";
     	}

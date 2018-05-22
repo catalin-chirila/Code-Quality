@@ -12,5 +12,5 @@ public interface ReviewRequestService {
 	ReviewRequest findByTitle(String title);
 	List<ReviewRequest> getAllOpenReviewRequests();
 	List<ReviewRequest> getAllClosedReviewRequests();
-	boolean isReviewRequestUnique(String title);
+	boolean isReviewRequestTitleUniqueOnUser(String title, Long userId);
 }
