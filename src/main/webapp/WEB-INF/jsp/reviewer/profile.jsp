@@ -30,9 +30,6 @@
                 <a class="nav-link underline" href="/reviewer/home">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link underline" href="/reviewer/requests/create">Create Review Request</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link underline" href="/reviewer/requests/open/all">Check Open Requests</a>
             </li>
             <li class="nav-item">
@@ -84,7 +81,7 @@
             </c:when>
             <c:otherwise>
                 <div class="form-group">
-                    <form:label for="firstName" path="firstName">Last Name</form:label>
+                    <form:label for="firstName" path="firstName">First Name</form:label>
                     <form:input type="text" class="form-control form-control-lg" id="firstName" path="firstName"
                                 placeholder="${currentUser.firstName}" name="firstName"></form:input>
                 </div>
@@ -94,14 +91,14 @@
         <c:choose>
             <c:when test="${empty currentUser.lastName}">
                 <div class="form-group">
-                    <form:label for="lastName" path="lastName">First Name</form:label>
+                    <form:label for="lastName" path="lastName">Last Name</form:label>
                     <form:input type="text" class="form-control form-control-lg" id="lastName" path="lastName"
                                 placeholder="Enter your last name.." name="lastName"></form:input>
                 </div>
             </c:when>
             <c:otherwise>
                 <div class="form-group">
-                    <form:label for="lastName" path="lastName">First Name</form:label>
+                    <form:label for="lastName" path="lastName">Last Name</form:label>
                     <form:input type="text" class="form-control form-control-lg" id="lastName" path="lastName"
                                 placeholder="${currentUser.lastName}" name="lastName"></form:input>
                 </div>

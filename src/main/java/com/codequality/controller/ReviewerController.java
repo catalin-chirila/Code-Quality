@@ -79,18 +79,18 @@ public class ReviewerController {
     		model.addAttribute("currentUser", userServiceImpl.findByUsername(principal.getName()));
         	model.addAttribute("updateUser", new User());
         	model.addAttribute("usernameerror", "An account already exists for that username.");
-    		return "/user/profile";
+    		return "/reviewer/profile";
     	}
     	
     	if (!userServiceImpl.isEmailUnique(updateData.getEmail())) {
     		model.addAttribute("currentUser", userServiceImpl.findByUsername(principal.getName()));
         	model.addAttribute("updateUser", new User());
         	model.addAttribute("emailerror", "An account already exists for that email.");	
-    		return "/user/profile";
+    		return "/reviewer/profile";
     	}
     	
     	userServiceImpl.update(updateData, principal.getName());
-        return "redirect:/user/profile/edit";
+        return "redirect:/reviewer/profile/edit";
     }
     
 }

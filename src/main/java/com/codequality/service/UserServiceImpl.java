@@ -48,6 +48,7 @@ public class UserServiceImpl implements UserService {
     	}  	
     }
     
+    
     /**
      * Takes a User model that contains only the data that needs to be updated and the current logged user username.
      * Based on the current logged user username, it retrieves the current user Object from the database and it will be updated

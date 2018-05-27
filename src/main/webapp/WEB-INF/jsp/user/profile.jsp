@@ -101,7 +101,7 @@
             </c:when>
             <c:otherwise>
                 <div class="form-group">
-                    <form:label for="lastName" path="lastName">First Name</form:label>
+                    <form:label for="lastName" path="lastName">Last Name</form:label>
                     <form:input type="text" class="form-control form-control-lg" id="lastName" path="lastName"
                                 placeholder="${currentUser.lastName}" name="lastName"></form:input>
                 </div>
