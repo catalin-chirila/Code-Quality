@@ -30,6 +30,10 @@ body {
     margin-top: 2%;
 }
 
+form {
+	margin-bottom: 1%;
+}
+
 label {
 	font-size: 2em;
 }

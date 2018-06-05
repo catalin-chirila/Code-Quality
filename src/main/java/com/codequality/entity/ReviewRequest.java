@@ -13,7 +13,7 @@ public class ReviewRequest {
     @Column(name = "id")
     private Long id;
     
-    @Size(min = 3, max = 40, message = "Please enter between {min} and {max} characters.")
+    @Size(min = 3, max = 255, message = "Please enter between {min} and {max} characters.")
     @Column(name = "title")
     private String title;
     

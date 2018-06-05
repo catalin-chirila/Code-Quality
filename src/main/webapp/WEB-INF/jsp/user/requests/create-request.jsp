@@ -53,7 +53,7 @@
             <form:label for="title" path="title">Title</form:label>
             <form:input type="text" class="form-control form-control-lg" id="title" path="title"
                         placeholder="Java Sorting Algorithm" name="title" required="required" minlength="3"
-                        maxlength="40"></form:input>
+                        maxlength="255"></form:input>
             <form:errors path="title" cssClass="error"/>
         </div>
         <div class="form-group">
